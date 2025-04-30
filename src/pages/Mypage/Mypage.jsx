@@ -1,0 +1,10 @@
+import React from 'react'
+import "./Mypage.style.css"
+
+const Mypage = () => {
+  return (
+    <div>마이페이지</div>
+  )
+}
+
+export default Mypage
