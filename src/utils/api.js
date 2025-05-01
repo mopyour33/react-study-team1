@@ -32,5 +32,4 @@ axios.interceptors.response.use(function (response) {
     // 응답 오류가 있는 작업 수행
     return Promise.reject(error);
   });
-  
 export default api;
