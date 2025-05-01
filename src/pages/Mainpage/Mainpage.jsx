@@ -1,47 +1,75 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./Mainpage.style.css"
-import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import { styled } from '@mui/material/styles';
 import { Col, Container, Row } from 'react-bootstrap';
+import { Box, Grid, Paper } from '@mui/material';
+import TopNews from './components/TopNews/TopNews';
+import CategoryNews from './components/CategoryNews/CategoryNews';
 
 
-// 1. 카테고리별 뉴스 가져오기
+// 1. 주요뉴스 가져오기
+// 2. 로그인 했다면 관심카테고리 배열로 가져오기
+// 3. 관심카테고리 정보가 없다면 임의로 nation, business로 가져오기
+
 const Mainpage = () => {
 
-  const responsive = {
-    desktop: { breakpoint: { max: 3000, min: 1024 }, items: 5 },
-    tablet: { breakpoint: { max: 1024, min: 640 }, items: 3 },
-    mobile: { breakpoint: { max: 640, min: 0 }, items: 2 },
-  };
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }));
 
+  const defaultCatefory = [{"id" : "sports", "name" : "스포츠"}, {"id" : "business", "name" : "경제 / 비지니스"}]
+  // 관심분야
+  const [interestCategory, setInterestCategory] = useState(defaultCatefory)
 
   return (
-    <div>   
-      <Container>
-        <Row>
-          <Col>  
-            <p className="movie-slider-title mb-4">카테고리 1</p>
-            <Carousel
-              arrows
-              infinite={true}
-              centerMode={true}
-              autoPlay
-              autoPlaySpeed={3000}
-              responsive={responsive}
-              itemClass="carousel-item-spacing"            
-            >
-            <div>Item 1</div>
-            <div>Item 2</div>
-            <div>Item 3</div>
-            <div>Item 4</div>
-            </Carousel>
-          </Col>
-          </Row>            
-      </Container>
-    </div>
-      
+    <Container>
+      <TopNews></TopNews>
+      <hr />
+      {interestCategory &&interestCategory.map((category, index)=>(
+            
+          <CategoryNews 
+              category={category}
+              key={index}
+          />
+          
+      ))}
+          
+    </Container>
     
-  )
+  );
+
+/*
+ <Col xs={12} md={6}> 기사 제목 사진1기사 제목 기사 제목 기사 제목 기사 제목 기사 제목 기사 제목 기사 제목 </Col>
+  <Col xs={12} md={6}> 사진2</Col>
+  <Col xs={12} md={6}> 사진3</Col>
+  <Col xs={12} md={6}> 사진4</Col>
+*/
+
 }
 
+
 export default Mainpage
+
+/*
+<Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={2}>
+        <Grid size={{ xs: 6, md: 8 }}>
+          <Item>xs=6 md=8</Item>
+        </Grid>
+        <Grid size={{ xs: 6, md: 4 }}>
+          <Item>xs=6 md=4</Item>
+        </Grid>
+        <Grid size={{ xs: 6, md: 4 }}>
+          <Item>xs=6 md=4</Item>
+        </Grid>
+        <Grid size={{ xs: 6, md: 8 }}>
+          <Item>xs=6 md=8</Item>
+        </Grid>
+      </Grid>
+    </Box>
+    */

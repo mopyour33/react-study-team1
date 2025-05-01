@@ -1,39 +1,35 @@
 import axios from "axios";
 
+const API_KEY = import.meta.env.VITE_NEWS_KEY;
 
-const VITE_APP_API_KEY = import.meta.env.VITE_APP_API_KEY;
-
-
-if (!VITE_APP_API_KEY) {
-    console.error(".env 파일에 설정되지 않음");
-} else {
-
-}
+//https://newsdata.io/api/1/news?language=ko&category=top
+//https://newsdata.io/api/1/news?apikey=pub_83984afe5a4832eea50f96310250e5308e613&language=ko&category=technology&q=인공지능
 
 const api = axios.create({
-    baseURL: "https://content.guardianapis.com/",
-
-    // 모든 요청에 자동으로 'api-key' 파라미터를 추가하도록 설정
-    params: {
-        'api-key': VITE_APP_API_KEY
-    },
+    baseURL: "https://newsdata.io/api/1", 
+    headers: {
+        Accept: 'application/json',
+        //Authorization: `Bearer ${API_KEY}`
+    }
 });
 
-
-api.interceptors.request.use(function (config) {
-    console.log("Request Interceptor:", config);
+// 요청 인터셉터 추가하기
+axios.interceptors.request.use(function (config) {
+    // 요청이 전달되기 전에 작업 수행
     return config;
-}, function (error) {
-    console.error("Request Interceptor Error:", error);
+  }, function (error) {
+    // 요청 오류가 있는 작업 수행
     return Promise.reject(error);
-});
+  });
 
-api.interceptors.response.use(function (response) {
-    console.log("Response Interceptor:", response);
+// 응답 인터셉터 추가하기
+axios.interceptors.response.use(function (response) {
+    // 2xx 범위에 있는 상태 코드는 이 함수를 트리거 합니다.
+    // 응답 데이터가 있는 작업 수행
     return response;
-}, function (error) {
-    console.error("Response Interceptor Error:", error);
+  }, function (error) {
+    // 2xx 외의 범위에 있는 상태 코드는 이 함수를 트리거 합니다.
+    // 응답 오류가 있는 작업 수행
     return Promise.reject(error);
-});
-
+  });
 export default api;
