@@ -1,0 +1,35 @@
+.news-image-container {
+    margin-bottom: 32px;
+}
+
+.news-image {
+    margin: 0;
+    position: relative;
+}
+
+.news-image-main {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    display: block;
+}
+
+.news-image-caption {
+    font-size: 14px;
+    color: #666;
+    padding: 8px 0;
+    border-bottom: 1px solid #e2e2e2;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    line-height: 1.4;
+}
+
+
+@media (max-width: 768px) {
+    .news-image-container {
+        margin-bottom: 24px;
+    }
+
+    .news-image-main {
+        max-height: 300px;
+    }
+}
