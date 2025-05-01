@@ -9,7 +9,7 @@ const MypageProfileReadWrite = ({item, itemModify, setItemModify, itemValue, set
     {itemModify === false ?
         (<>
             <Form.Control type="text" value={itemValue} disabled={!itemModify} readOnly/>
-            <Button variant="primary" onClick={() => setItemModify(true)}>수정</Button>
+            <Button variant="dark" onClick={() => setItemModify(true)}>수정</Button>
         </>)
         :
         (<>
