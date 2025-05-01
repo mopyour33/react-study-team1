@@ -27,11 +27,11 @@ const articles = [
 const Listpage = () => {
   console.log("Listpage articles:", articles);
   return (
-    <Container sx={{py : 4}}>
+    <Container sx={{ py: 4 }}>
       <Grid container spcing={3}>
         {articles.map((article, index) => {
           <Grid item xs={12} sm={6} md={4} key={index}>
-            <NewsCard {...article}/>
+            <NewsCard {...article} />
           </Grid>
         })}
       </Grid>
