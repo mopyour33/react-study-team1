@@ -10,7 +10,7 @@ import News from "./pages/Listpage/Listpage";
 import Detail from "./pages/Detailpage/Detailpage";
 import Mypage from "./pages/Mypage/Mypage";
 import SignupPage from "./pages/SignupPage/SignupPage";
-import NotFoundpage from "./pages/NotFoundPage/NotFoundpage";
+import NotFoundpage from "./pages/NotFoundpage/NotFoundpage";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
