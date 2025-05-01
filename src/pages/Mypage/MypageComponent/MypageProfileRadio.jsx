@@ -17,7 +17,7 @@ const MypageProfileRadio = ({item, itemValue, setItemValue, itemRadio }) => {
                 key={idx}
                 id={`${radio.name}-${idx}`}
                 type="radio"
-                variant='outline-primary'
+                variant='outline-dark'
                 name={`radio-${item}`}
                 value={radio.value}
                 checked={itemValue === radio.value}
