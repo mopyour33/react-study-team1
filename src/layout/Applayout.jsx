@@ -3,6 +3,7 @@ import { Navbar, Container, Form, FormControl, Button } from "react-bootstrap";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import useSignupStore from "../stores/useSignupStore";
 import "./Applayout.style.css";
+import logoImage from "../assets/news_logo.png";
 
 const Applayout = () => {
   const { isLoggedIn, setIsLoggedIn } = useSignupStore();
@@ -15,11 +16,23 @@ const Applayout = () => {
 
   return (
     <div>
-      <Navbar expand="lg" fixed="top" className="shadow-sm px-3 bg-white">
+      <Navbar
+        expand="lg"
+        fixed="top"
+        className="shadow-sm px-3 bg-light custom-navbar"
+      >
         <Container
           fluid
           className="d-flex justify-content-end align-items-center"
         >
+          <Navbar.Brand as={Link} to="/" className="me-auto">
+            <img
+              src={logoImage}
+              alt="Logo"
+              height="30"
+              className="d-inline-block align-top"
+            />
+          </Navbar.Brand>
           <Form
             className="d-flex ms-auto align-items-center"
             style={{ maxWidth: "600px", gap: "0.5rem", whiteSpace: "nowrap" }}
