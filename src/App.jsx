@@ -10,7 +10,8 @@ import News from "./pages/Listpage/Listpage";
 import Detail from "./pages/Detailpage/Detailpage";
 import Mypage from "./pages/Mypage/Mypage";
 import SignupPage from "./pages/SignupPage/SignupPage";
-import NotFoundPage from "./pages/NotFoundPage/NotFoundpage";
+import NotFoundpage from "./pages/NotFoundPage/NotFoundpage";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
         <Route path="/mypage" element={<Mypage />} />
       </Route>
 
-      <Route path="*" element={<NotFoundPage />}></Route>
+      <Route path="*" element={<NotFoundpage />}></Route>
     </Routes>
   );
 }
