@@ -1,0 +1,41 @@
+.keyword-section {
+    margin: 32px 0;
+    padding-top: 20px;
+    border-top: 1px solid #e2e2e2;
+}
+
+.keyword-heading {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    color: #333;
+}
+
+.keyword-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.keyword-tag {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 14px;
+    color: #444;
+    background-color: #f0f0f0;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
+
+.keyword-tag:hover {
+    background-color: #e0e0e0;
+}
+
+
+@media (max-width: 768px) {
+    .keyword-section {
+        margin: 24px 0;
+    }
+}
