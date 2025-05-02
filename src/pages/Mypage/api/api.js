@@ -1,12 +1,19 @@
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-const API_KEY = import.meta.env.VITE_NEWS_KEY;
+function fetchDetail() {
 
-const api = axios.create({
-    baseURL: "https://newsdata.io/api/1",
-    headers: {
-        Accept:"application/json",
-    }
-});
+    const VITE_NEWS_KEY = import.meta.env.VITE_NEWS_KEY;
+    console.log("VITE_NEWS_KEY : ", VITE_NEWS_KEY);
 
-export default api
+    return api.get(`/news?language=ko&category=top`);
+}
+
+export const useDetailQuery = () => {
+    return useQuery({
+        queryKey: ['news-detail'],
+        queryFn: fetchDetail,
+        suspense: true,
+        select: (result) => result.data.results,
+    })
+}
