@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import api from "../../../utils/api";
 
 const API_KEY = import.meta.env.VITE_NEWS_KEY;
 const baseURL = "https://newsdata.io/api/1/news";
