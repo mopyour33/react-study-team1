@@ -12,3 +12,16 @@
 .custom-navbar .navbar-brand img {
   height: 60px;
 }
+
+.main-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 70px 0 20px 0;
+}
+
+.main-logo {
+  max-width: 100%;
+  height: auto;
+  width: 300px;
+}

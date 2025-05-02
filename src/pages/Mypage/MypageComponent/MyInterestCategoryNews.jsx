@@ -4,14 +4,14 @@ import MyInterestCategoryNewsList from './MyInterestCategoryNewsList';
 import { Alert, Spinner } from 'react-bootstrap';
 import useUserInfo from '../../../stores/useUserInfo';
 
-const MyInterestCategoryNews = ({userId}) => {
+const MyInterestCategoryNews = ({ userId, categoryCheckbox }) => {
 
     //Znstand로 데이터 가져오기
     const getUserInfoById = useUserInfo(state => state.getUserInfoById);
     const userInfo = getUserInfoById(userId);
 
     const { data: myIntertestCategoryNewsData, isLoading, isError, error } = useInterestCategoryNews(userInfo.cusInfo.categoryILike);
-    console.log('awb', myIntertestCategoryNewsData);
+    // console.log('awb', myIntertestCategoryNewsData);
 
     if (isLoading) {
         return (

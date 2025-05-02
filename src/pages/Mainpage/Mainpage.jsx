@@ -22,7 +22,7 @@ const Mainpage = () => {
     color: theme.palette.text.secondary,
   }));
 
-  const defaultCatefory = [{"id" : "sports", "name" : "스포츠"}, {"id" : "business", "name" : "경제 / 비지니스"}]
+  const defaultCatefory = [{ "id": "sports", "name": "스포츠" }, { "id": "business", "name": "경제 / 비지니스" }]
   // 관심분야
   const [interestCategory, setInterestCategory] = useState(defaultCatefory)
 
@@ -30,25 +30,25 @@ const Mainpage = () => {
     <Container>
       <TopNews></TopNews>
       <hr />
-      {interestCategory &&interestCategory.map((category, index)=>(
-            
-          <CategoryNews 
-              category={category}
-              key={index}
-          />
-          
+      {interestCategory && interestCategory.map((category, index) => (
+
+        <CategoryNews
+          category={category}
+          key={index}
+        />
+
       ))}
-          
+
     </Container>
-    
+
   );
 
-/*
- <Col xs={12} md={6}> 기사 제목 사진1기사 제목 기사 제목 기사 제목 기사 제목 기사 제목 기사 제목 기사 제목 </Col>
-  <Col xs={12} md={6}> 사진2</Col>
-  <Col xs={12} md={6}> 사진3</Col>
-  <Col xs={12} md={6}> 사진4</Col>
-*/
+  /*
+   <Col xs={12} md={6}> 기사 제목 사진1기사 제목 기사 제목 기사 제목 기사 제목 기사 제목 기사 제목 기사 제목 </Col>
+    <Col xs={12} md={6}> 사진2</Col>
+    <Col xs={12} md={6}> 사진3</Col>
+    <Col xs={12} md={6}> 사진4</Col>
+  */
 
 }
 
