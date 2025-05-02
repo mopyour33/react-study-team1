@@ -4,6 +4,7 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import useSignupStore from "../stores/useSignupStore";
 import "./Applayout.style.css";
 import logoImage from "../assets/news_logo.png";
+import mainlogo from "../assets/main_logo.png";
 
 const Applayout = () => {
   const { isLoggedIn, setIsLoggedIn } = useSignupStore();
@@ -79,7 +80,11 @@ const Applayout = () => {
           </Form>
         </Container>
       </Navbar>
-
+      <div className="main-logo-container">
+        <Link to="/">
+          <img src={mainlogo} alt="logo" className="main-logo" />
+        </Link>
+      </div>
       <Outlet />
     </div>
   );
