@@ -1,82 +1,65 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDetailQuery } from '../../hooks/useDetail';
+import { Container } from 'react-bootstrap';
 import "./Detailpage.style.css";
-
 
 import NewsHeader from './NewsHeader';
 import NewsContent from './NewsContent';
 import NewsImages from './NewsImages';
 import KeywordSection from './KeywordSection';
 
-
 const Detailpage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { data, isLoading, isError, error } = useDetailQuery(id);
-  const [showShareModal, setShowShareModal] = useState(false);
+  const { data: Detail } = useDetailQuery(id);
 
-  // 이전 페이지로 돌아가기
-  const handleGoBack = () => {
-    navigate(-1);
+
+  const handleShareClick = () => {
+    console.log('공유 기능은 현재 구현되지 않았습니다.');
+    alert('공유 기능은 현재 개발 중입니다.');
   };
 
-
-
-  // 로딩 중일 때 표시할 내용
-  if (isLoading) {
+  
+  if (!Detail) {
     return (
-      <div className="detail-loading">
-        <div className="loading-spinner"></div>
-        <h2>기사를 불러오는 중</h2>
-      </div>
-    );
-  }
-
-  // 에러 발생 시 표시할 내용
-  if (isError) {
-    return (
-      <div className="detail-error">
-        <h2>기사를 불러오는 중 오류가 발생</h2>
-        <p>{error?.message || "알 수 없는 오류가 발생"}</p>
-        <button className="btn-go-back" onClick={handleGoBack}>
-          이전 페이지로 돌아가기
-        </button>
-      </div>
-    );
-  }
-
-  // 데이터가 없을 때
-  if (!data || !data.results || data.results.length === 0) {
-    return (
-      <div className="detail-not-found">
-        <h2>해당 뉴스를 찾을 수 없습니다</h2>
-        <p>요청하신 기사가 더 이상 존재하지 않거나 이동되었을 수 있습니다.</p>
-        <button className="btn-go-back" onClick={handleGoBack}>
-          이전 페이지로 돌아가기
-        </button>
-      </div>
+      <Container>
+        <div className="detail-loading">
+          <div className="loading-spinner"></div>
+          <h2>기사를 불러오는 중</h2>
+        </div>
+      </Container>
     );
   }
 
 
-  const newsItem = data.results[0];
+  if (!Detail || !Detail.results || Detail.results.length === 0) {
+    return (
+      <Container>
+        <div className="detail-not-found">
+          <h2>해당 뉴스를 찾을 수 없습니다</h2>
+          <p>요청하신 기사가 더 이상 존재하지 않습니다다.</p>
+          <button className="btn-go-back" onClick={() => navigate(-1)}>
+            이전 페이지로 돌아가기
+          </button>
+        </div>
+      </Container>
+    );
+  }
 
-  const category = newsItem.category ? (
-    Array.isArray(newsItem.category) ? newsItem.category[0] : newsItem.category
-  ) : null;
+  const newsItem = Detail.results[0];
 
   return (
-    <div className="detail-page">
-      <button className="btn-go-back" onClick={handleGoBack}>
-        뒤로 가기
-      </button>
+    <Container>
+      <div className="detail-page">
+        <button className="btn-go-back" onClick={() => navigate(-1)}>
+          뒤로 가기
+        </button>
 
-      <div className="detail-container">
-        <div className="detail-main-content">
+        <div className="detail-container">
           <NewsHeader
             newsItem={newsItem}
-            onShareClick={toggleShareModal}
+            onShareClick={handleShareClick}
           />
 
           <NewsImages
@@ -92,22 +75,8 @@ const Detailpage = () => {
 
           <KeywordSection keywords={newsItem.keywords} />
         </div>
-
-        <div className="detail-sidebar">
-          <RelatedNews
-            currentArticleId={id}
-            currentCategory={category}
-          />
-        </div>
       </div>
-
-      {showShareModal && (
-        <ShareModal
-          newsItem={newsItem}
-          onClose={toggleShareModal}
-        />
-      )}
-    </div>
+    </Container>
   );
 };
 
