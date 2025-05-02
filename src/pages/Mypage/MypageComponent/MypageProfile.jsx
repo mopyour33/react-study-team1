@@ -7,7 +7,7 @@ import MypageProfileRadio from './MypageProfileRadio';
 import { useNavigate } from 'react-router-dom';
 import useUserInfo from '../../../stores/useUserInfo';
 
-const MypageProfile = ({userId}) => {
+const MypageProfile = ({ userId, categoryCheckbox }) => {
 
     const [passwdModify, setPasswdModify] = useState(false);
     const [emailModify, setEmailModify] = useState(false);
@@ -27,8 +27,10 @@ const MypageProfile = ({userId}) => {
         { name: '여자', value: '2' },
     ];
 
-    // 뿌려줄 category list
-    const categoryCheckbox = ['politics', 'economy', 'society', 'sports', 'entertainments', 'novels'];
+    const nationalityRadios = [
+        { name: '내국인', value: '1' },
+        { name: '외국인', value: '2' },
+    ];
 
     //zustand로 고객정보 받기
     const { userInfoList, updateUserInfo } = useUserInfo();
@@ -145,6 +147,12 @@ const MypageProfile = ({userId}) => {
                     itemValue={formData.sex}
                     itemRadio={sexRadios} />
 
+                {/* 내국인/외국인 읽기 가능/수정 불가 */}
+                <MypageProfileRadio
+                    item="국적"
+                    itemValue={formData.nationality}
+                    itemRadio={nationalityRadios} />
+
                 {/* 전화번호 읽기 가능/수정 가능 */}
                 <MypageProfileReadWrite
                     item="전화번호"
@@ -153,7 +161,7 @@ const MypageProfile = ({userId}) => {
                     itemValue={formData.phoneNumber}
                     setItemValue={(val) => handleChange("phoneNumber", val)} />
             </Row>
-            <br/>
+            <br />
             <Row>
                 <Form.Group>
                     <Form.Label>관심 카테고리</Form.Label>
@@ -161,13 +169,13 @@ const MypageProfile = ({userId}) => {
                         {categoryCheckbox.map((category, index) => (
                             <Form.Check
                                 inline
-                                label={category}
+                                label={category.value}
                                 name="group1"
                                 type="checkbox"
                                 id={`inline-checkbox-${index}`}
                                 key={`checkbox-${index}`}
-                                checked={formData.categoryILike.includes(category)}
-                                onChange={() => handleCheckboxChange(category)}
+                                checked={formData.categoryILike.includes(category.key)}
+                                onChange={() => handleCheckboxChange(category.key)}
                             />
 
                         ))}

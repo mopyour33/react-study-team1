@@ -15,26 +15,25 @@ const useUserInfo = create((set, get) => ({
                 zipCode: '11111',
                 addressDetail: '홍길동로 111, 222동 333호(홍길동 아파트)',
                 phoneNumber: '010-1111-4444',
-                mobileCompany: '1',
-                sex: '1',
-                categoryILike: ['economy', 'sports'],
-                //찜한 것은 여기에 저장됨
-                myFavoriteNews: [
+                mobileCompany: '1', // 1: SKT, 2: KT, 3:LGU+
+                sex: '1', //1:남자, 2:여자
+                nationality: '1', //1:내국인, 2: 외국인
+                categoryILike: ['top','world','nation','sports'],
+                myFavoriteNews: [ //로그인한 사용자가 찜한 기사는 여기에 저장됨. 받아오신 기사 object 그대로 넣어주셔도 됩니다.
                     {
-                        article_id: "32558c6a9e74b59ee405aa2db536c34a",
+                        article_id: "a8eabf5eec2ea39002e176dc0038b17d",
                         category: ['top'],
-                        image_url: "https://assets.nst.com.my/images/articles/fine15_NSTfield_image_listing_featured_v2.var_1746053071.jpg",
-                        title: "Everything is fine: Trump's cabinet shrugs off shrinking economy",
-                        link:"https://www.nst.com.my/world/world/2025/05/1209851/everything-fine-trumps-cabinet-shrugs-shrinking-economy",
+                        image_url: "https://img1.newsis.com/2025/04/29/NISI20250429_0020789834_web.jpg?rnd=20250429084924",
+                        title: "검찰총장, 국회 탄핵소추 보고에 \"탄핵 사유는 근거 없는 허위사실\"",
+                        link:"https://www.newsis.com/view/NISX20250501_0003162044",
                     },
                     {
-                        article_id: "64a5fa9dc9d867b335a68b046ac101bb",
+                        article_id: "e5f66fb8bc1e5893ff223c1a19d291b3",
                         category: ['sports'],
-                        image_url: "https://www.yardbarker.com/media/3/b/3bf3267cb422f74192e878b822e9d39fbd1ad428/thumb_16x9/javier-baezs-resurgence-continues-win-vs-astros.jpg?v=1",
-                        title: "Javier Baez's resurgence continues in win vs. Astros",
-                        link:"https://www.yardbarker.com/mlb/articles/javier_baezs_resurgence_continues_in_win_vs_astros/s1_13132_42132389",
+                        image_url: "https://www.newscj.com/news/photo/202505/3264936_3327968_3538.jpg",
+                        title: "[야구] 롯데, 주중 3연전 싹쓸이 ‘공동 2위’ 도약... SSG는 3연패 탈출",
+                        link:"https://www.newscj.com/news/articleView.html?idxno=3264936",
                     }],
-                //찜한 것은 여기에 저장됨
             }
         }
     ],

@@ -7,9 +7,11 @@ const API_KEY = import.meta.env.VITE_NEWS_KEY;
 
 const api = axios.create({
     baseURL: "https://newsdata.io/api/1", 
+    params: {
+      apikey: API_KEY
+    },
     headers: {
         Accept: 'application/json',
-        //Authorization: `Bearer ${API_KEY}`
     }
 });
 
