@@ -2,16 +2,12 @@ import axios from "axios";
 
 const API_KEY = import.meta.env.VITE_NEWS_KEY;
 
-//https://newsdata.io/api/1/news?language=ko&category=top
-//https://newsdata.io/api/1/news?apikey=pub_83984afe5a4832eea50f96310250e5308e613&language=ko&category=technology&q=인공지능
-
 const api = axios.create({
-    baseURL: "https://newsdata.io/api/1", 
-    params: {
-      apikey: API_KEY
-    },
+    baseURL: "https://newsdata.io/api/1/latest",
     headers: {
-        Accept: 'application/json',
+        Accept:"application/json",
+        //Authorization : `Bearer ${API_KEY}`
+        'X-ACCESS-KEY': API_KEY,
     }
 });
 
