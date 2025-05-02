@@ -1,17 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import api from "../utils/api";
 
+
 const fetchDetail = async ({ queryKey }) => {
     const newsId = queryKey[1];
-
+    // 요청 전송 전에 로그 추가
+    console.log("Sending request with ID:", newsId, "and API KEY:", api.defaults?.params?.apikey || "No API key in defaults");
     try {
+        // id 파라미터만 사용하고 다른 파라미터는 제거
         const response = await api.get('/latest', {
             params: {
-                id: newsId,
-                // 전체 콘텐츠 포함
-                full_content: 1,
-                // 중복 제거
-                removeduplicate: 1
+                id: newsId
+                // full_content와 removeduplicate 파라미터 제거
             }
         });
 
@@ -26,11 +26,9 @@ const fetchDetail = async ({ queryKey }) => {
 export const useDetailQuery = (newsId) =>
     useQuery({
         queryKey: ["news-detail", newsId],
-        queryFn: fetchDetail,
-        staleTime: 1000 * 60 * 5, // 5분 동안 데이터 유지
-        cacheTime: 1000 * 60 * 30, // 30분 동안 캐시 유지
-        retry: 1, // 실패 시 1번 재시도
-        refetchOnWindowFocus: false, // 창이 포커스될 때 자동 리페치 안 함
+        queryFn: fetchDetail(newsId),
+        suspense: true,
+        select: (result) => result.data.results,
     });
 
 export default useDetailQuery;
