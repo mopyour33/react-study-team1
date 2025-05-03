@@ -16,7 +16,7 @@ const NewsHeader = ({ newsItem, onShareClick }) => {
         return new Date(dateString).toLocaleDateString('ko-KR', options);
     };
 
-    // 카테고리 문자열 변환
+
     const getCategoryString = (categories) => {
         if (!categories) return "";
         return Array.isArray(categories) ? categories.join(', ') : categories;
