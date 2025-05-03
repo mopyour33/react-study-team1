@@ -1,6 +1,6 @@
 .card {
-    width: 240px;
-    height: 320px;
+    width: 190px !important;
+    height: 250px !important;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -52,4 +52,16 @@
     opacity: 1;
     text-align: left;
     transition: opacity 0.3s ease;
+  }
+  
+  @media screen and (max-width:768px) {
+    .react-multi-carousel-track {
+      justify-content: center !important;
+      display: flex !important;
+    }
+
+    .react-multi-carousel-item {
+      display: flex !important;
+      justify-content: center !important;
+    }
   }

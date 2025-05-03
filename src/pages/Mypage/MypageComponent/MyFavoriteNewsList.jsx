@@ -2,6 +2,7 @@ import React from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import MyFavoriteNewsCard from './MyFavoriteNewsCard';
+import './MyFavoriteNewsList.style.css';
 
 const responsive = {
     superLargeDesktop: {
@@ -27,6 +28,7 @@ const MyFavoriteNewsList = ({ userId, myNewsList }) => {
     console.log("ddd", myNewsList);
 
     return (
+        <div className='favorite-carousel-wrapper'>
         <Carousel responsive={responsive}>
             {myNewsList.map((newsItem, index) => {
                 return (
@@ -34,6 +36,7 @@ const MyFavoriteNewsList = ({ userId, myNewsList }) => {
                 );
             })}
         </Carousel>
+        </div>
     );
 }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import useUserInfo from '../../../stores/useUserInfo';
 import MyFavoriteNewsList from './MyFavoriteNewsList';
+import './MyFavoriteNews.style.css';
 
 const MyFavoriteNews = ({ userId }) => {
 
@@ -10,8 +11,8 @@ const MyFavoriteNews = ({ userId }) => {
     const myNewsList = targetUser?.cusInfo?.myFavoriteNews || [];
 
     return (
-        <div>
-            <h2>MyFavoriteNews</h2>
+        <div className='my-favorite-wrapper'>
+            <h2 className='my-favorite-title'> 내가 찜한 뉴스</h2>
             <MyFavoriteNewsList userId={userId} myNewsList={myNewsList} />
         </div>
     )
