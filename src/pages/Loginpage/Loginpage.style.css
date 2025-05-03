@@ -1,5 +1,11 @@
-.custom-input:focus {
-  outline: none !important;
-  box-shadow: none !important;
-  border-color: #ced4da !important;
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.login-box {
+  z-index: 1;
 }

@@ -18,7 +18,7 @@ const Loginpage = () => {
   };
 
   return (
-    <div className="login-page d-flex justify-content-center align-items-center vh-100">
+    <div className="login-page d-flex justify-content-start align-items-center min-vh-100 mt-5">
       <div
         className="login-box p-5 rounded shadow-sm bg-white"
         style={{ width: "350px" }}
