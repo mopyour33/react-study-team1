@@ -6,6 +6,7 @@ import MypageProfileReadWrite from './MypageProfileReadWrite';
 import MypageProfileRadio from './MypageProfileRadio';
 import { useNavigate } from 'react-router-dom';
 import useUserInfo from '../../../stores/useUserInfo';
+import './MypageProfile.style.css';
 
 const MypageProfile = ({ userId, categoryCheckbox }) => {
 
@@ -104,7 +105,8 @@ const MypageProfile = ({ userId, categoryCheckbox }) => {
                 <MypageProfileReadOnly item="Birth" itemValue={formData.birth} />
             </Row>
 
-            <Row className="mb-3">
+
+            <div className="city-zipcode-group">
                 {/* 도시 읽기/수정 가능 */}
                 <MypageProfileReadWrite
                     item="City"
@@ -120,7 +122,7 @@ const MypageProfile = ({ userId, categoryCheckbox }) => {
                     setItemModify={setZipCodeModify}
                     itemValue={formData.zipCode}
                     setItemValue={(val) => handleChange("zipCode", val)} />
-            </Row>
+            </div>
 
             <Row>
                 {/* AddressDetail 읽기 가능/수정 가능 */}
@@ -132,8 +134,8 @@ const MypageProfile = ({ userId, categoryCheckbox }) => {
                     setItemValue={(val) => handleChange("addressDetail", val)} />
             </Row>
 
-            {/* 통신사, 내/외국인 선택 */}
-            <Row>
+            {/* 통신사, 남자/여자, 내/외국인 선택 */}
+            <div className='phonecompany-sex-nationality-group'>
                 {/* 통신사 읽기 가능/수정 가능 */}
                 <MypageProfileRadio
                     item="통신사"
@@ -152,7 +154,8 @@ const MypageProfile = ({ userId, categoryCheckbox }) => {
                     item="국적"
                     itemValue={formData.nationality}
                     itemRadio={nationalityRadios} />
-
+            </div>
+            <Row>
                 {/* 전화번호 읽기 가능/수정 가능 */}
                 <MypageProfileReadWrite
                     item="전화번호"

@@ -1,0 +1,66 @@
+.city-zipcode-group,
+.phonecompany-sex-nationality-group {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.city-zipcode-group>*,
+.phonecompany-sex-nationality-group>* {
+    flex: 1;
+    min-width: 200px;
+}
+
+.form-readewrite-group {
+    display: flex;
+    align-items: center;
+}
+
+.form-readewrite-group .form-control {
+    flex: 1;
+    margin-right: 8px;
+}
+
+.form-readewrite-group .btn {
+    white-space: nowrap;
+}
+
+.form-readwrite-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.form-readwrite-input {
+    flex-grow: 1;
+}
+
+.form-readwrite-row button {
+    min-width: 60px;
+    padding: 6px 12px;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+
+@media screen and (max-width: 768px) {
+ .city-zipcode-group >div,
+ .phonecompany-sex-nationality-group > div {
+    flex: 1 1 100%;
+ }
+
+ .form-readwrite-row {
+    flex-direction: column;
+    align-items: flex-start;
+ }
+
+ .form-readwrite-row button {
+    width: 100%;
+    text-align: center;
+ }
+
+ .form-control {
+     width: 100%;
+ }
+}

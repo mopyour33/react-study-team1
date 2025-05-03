@@ -1,0 +1,10 @@
+.favorite-carousel-wrapper {
+    margin-bottom: 48px;
+  }
+  
+  
+  @media screen and (max-width: 768px) {
+    .favorite-carousel-wrapper {
+      padding: 0 8px;
+    }
+}
