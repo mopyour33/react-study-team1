@@ -43,33 +43,7 @@ const Mainpage = () => {
     
   );
 
-/*
- <Col xs={12} md={6}> 기사 제목 사진1기사 제목 기사 제목 기사 제목 기사 제목 기사 제목 기사 제목 기사 제목 </Col>
-  <Col xs={12} md={6}> 사진2</Col>
-  <Col xs={12} md={6}> 사진3</Col>
-  <Col xs={12} md={6}> 사진4</Col>
-*/
-
 }
 
 
 export default Mainpage
-
-/*
-<Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2}>
-        <Grid size={{ xs: 6, md: 8 }}>
-          <Item>xs=6 md=8</Item>
-        </Grid>
-        <Grid size={{ xs: 6, md: 4 }}>
-          <Item>xs=6 md=4</Item>
-        </Grid>
-        <Grid size={{ xs: 6, md: 4 }}>
-          <Item>xs=6 md=4</Item>
-        </Grid>
-        <Grid size={{ xs: 6, md: 8 }}>
-          <Item>xs=6 md=8</Item>
-        </Grid>
-      </Grid>
-    </Box>
-    */

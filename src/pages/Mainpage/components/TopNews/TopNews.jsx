@@ -28,22 +28,33 @@ const TopNews = () => {
         </div>
         <Row>
         
-        <Col xs={12} md={6} onClick={() => navigate(`/news/${data[0]?.article_id}`)}>     
-            <img className="img-fluid" src={data[0]?.image_url}  ></img>
-            <span className="fs-3 fw-bold d-block">{data[0]?.title}</span>
-            <span className="fs-6">{data[0]?.description.slice(0,130)}...</span>
+        <Col className="topnews-col" xs={12} md={6} onClick={() => navigate(`/news/${data[0]?.article_id}`)}>  
+  
+            <div
+                style={{backgroundImage:"url("+`${data[2]?.image_url}`+")",
+                }}
+                className="topnews-img"
+                onClick={() => navigate(`/news/${top?.article_id}`)}
+            ></div>
+            <span className="fs-4 fw-bold d-block mb-3">{data[0]?.title}</span>
+            <p className="fs-6 line-clamp-2">{data[0]?.description}</p>
         </Col>
-            
+
         <Col xs={12} md={6}>
             {topData &&topData.map((top, index)=>(
-            <Row className="topnews-right" >
+            <Row style={{ height: `${100 / topData.length}%`, margin: 0 }} className="topnews-right" >
                 <Col xs={12} md={12} >
                     <Row >                            
                         <Col xs={10} md={10}>
                         <span className="fs-6 fw-bold d-block">{top.title}</span>
                         </Col>
-                        <Col xs={2} md={2}>
-                        <img  src={top.image_url}  ></img>
+                        <Col xs={2} md={2} className="d-flex align-items-center">
+                            <div
+                                style={{backgroundImage:"url("+`${top.image_url}`+")",
+                                }}
+                                className="topnews-img"
+                                onClick={() => navigate(`/news/${top?.article_id}`)}
+                            ></div>                        
                         </Col>
                     </Row>   
                 </Col>         
