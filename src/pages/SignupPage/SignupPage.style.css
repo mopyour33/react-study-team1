@@ -1,3 +1,11 @@
+input:focus,
+select:focus,
+textarea:focus,
+button:focus .form-check-input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 .signup-container {
   max-width: 500px;
   margin: 50px auto;
@@ -13,15 +21,18 @@
   color: #222;
 }
 
-.signup-container .form-control {
+.signup-container .form-control,
+.signup-container .custom-select {
   border-radius: 8px;
   padding: 12px;
   border: 1px solid #ccc;
   background-color: #fff;
+  color: #333;
+  font-size: 16px;
 }
 
 .signup-container .input-group-text {
-  background-color: #fff !important;
+  background-color: #fff;
   border: 1px solid #ccc;
   border-right: none;
   color: #333;
@@ -30,16 +41,6 @@
 
 .signup-container .input-group .form-control {
   border-left: none;
-}
-
-.signup-container .custom-select {
-  border-radius: 8px;
-  padding: 12px;
-  border: 1px solid #ccc;
-  background-color: #fff;
-  color: #333;
-  font-size: 16px;
-  height: auto;
 }
 
 .signup-container button {
@@ -73,30 +74,56 @@
   font-weight: 500;
 }
 
-/* 선택된 토글 버튼 */
 .signup-container .btn-check:checked + .btn {
   background-color: #000;
   color: #fff;
   border-color: #000;
 }
 
+.signup-container .toggle-button:first-child {
+  border-radius: 6px 0 0 6px;
+}
+
+.signup-container .toggle-button:last-child {
+  border-radius: 0 6px 6px 0;
+}
+
 .email-input-group .form-control {
-  border-right: none; /* 기존 스타일 유지 */
-  border-radius: 0.375rem 0 0 0.375rem; /* 오른쪽 모서리 라운딩 추가 */
+  border-right: none;
+  border-radius: 0.375rem 0 0 0.375rem;
 }
 
 .email-input-group .input-group-text:last-child {
-  border-left: none; /* 기존 스타일 유지 */
-  border-radius: 0 0.375rem 0.375rem 0; /* 왼쪽 모서리 라운딩 추가 */
+  border-left: none;
+  border-radius: 0 0.375rem 0.375rem 0;
   font-size: 0.85rem;
 }
 
 .email-input-group {
   display: flex;
-  justify-content: space-between;
 }
 
 .github-text {
-  /* margin-right: 10px !important; */
   border: 1px solid #ccc !important;
+}
+
+.form-check-input {
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 0.25em;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  transition: all 0.2s ease-in-out;
+  box-shadow: none;
+}
+
+.form-check-input:checked {
+  background-color: black;
+  border-color: black;
+}
+
+.form-check-input:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: #ccc;
 }
