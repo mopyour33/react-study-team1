@@ -13,9 +13,9 @@ const CategoryNews = ({category}) => {
 
     console.log("카테고리 뉴스 : ", category.name)
     const responsive = {
-        desktop: { breakpoint: { max: 3000, min: 1024 }, items: 5 },
-        tablet: { breakpoint: { max: 1024, min: 640 }, items: 3 },
-        mobile: { breakpoint: { max: 640, min: 0 }, items: 2 },
+        desktop: { breakpoint: { max: 3000, min: 1024 }, items: 2 },
+        tablet: { breakpoint: { max: 1024, min: 640 }, items: 1 },
+        mobile: { breakpoint: { max: 640, min: 0 }, items: 1 },
       };
     
       let categoryData = sportsData;
@@ -34,7 +34,7 @@ const CategoryNews = ({category}) => {
             autoPlay
             autoPlaySpeed={5000}
             responsive={responsive}
-            itemClass="movie-slider p-1"
+            itemClass="p-1"
             containerClass="carousel-container h-[440px]"     
           >
             {categoryData &&categoryData.map((news, index)=>(
