@@ -13,6 +13,7 @@ import SignupPage from "./pages/SignupPage/SignupPage";
 import NotFoundpage from "./pages/NotFoundpage/NotFoundpage";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 function App() {
   return (

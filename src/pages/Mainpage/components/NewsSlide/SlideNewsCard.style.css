@@ -5,3 +5,15 @@
     cursor: pointer;
 }
 
+.card-title{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;          /* 2줄로 제한 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;               /* 넘치는 텍스트 숨기기 */
+    text-overflow: ellipsis;        /* 넘치면 생략 부호 표시 */
+    line-height: 1.5;               /* 줄 간격 */
+    min-height: calc(2 * 1.5em);    /* 최소 높이를 2줄로 설정 */
+    text-align: left;               /* 왼쪽 정렬 */
+  }
+
+  

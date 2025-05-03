@@ -3,8 +3,9 @@ import { useInterestCategoryNews } from '../hooks/useInterestCategoryNew'
 import MyInterestCategoryNewsList from './MyInterestCategoryNewsList';
 import { Alert, Spinner } from 'react-bootstrap';
 import useUserInfo from '../../../stores/useUserInfo';
+import './MyInterestCategoryNews.style.css';
 
-const MyInterestCategoryNews = ({ userId, categoryCheckbox }) => {
+const MyInterestCategoryNews = ({ userId }) => {
 
     //Znstand로 데이터 가져오기
     const getUserInfoById = useUserInfo(state => state.getUserInfoById);
@@ -28,12 +29,13 @@ const MyInterestCategoryNews = ({ userId, categoryCheckbox }) => {
         return <Alert variant="danger">{error.message}</Alert>
     }
     return (
-        <div>
-            <h2>내 관심사 기반 추천 뉴스</h2>
+        <div className='my-interest-wrapper'>
+            <h2 className='my-category-title'>내 카테고리 뉴스</h2>
             <MyInterestCategoryNewsList
                 myCategories={userInfo.cusInfo.categoryILike}
                 categoryNewsList={myIntertestCategoryNewsData}
             />
+            <br/>
         </div>
     )
 }
