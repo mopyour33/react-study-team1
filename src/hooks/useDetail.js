@@ -1,36 +1,34 @@
 import { useQuery } from "@tanstack/react-query";
 import api from "../utils/api";
 
+
 const fetchDetail = async ({ queryKey }) => {
     const newsId = queryKey[1];
+    console.log("요청 ID:", newsId);
 
     try {
         const response = await api.get('/latest', {
             params: {
-                id: newsId,
-                // 전체 콘텐츠 포함
-                full_content: 1,
-                // 중복 제거
-                removeduplicate: 1
+                id: newsId
             }
         });
 
         return response.data;
     } catch (error) {
-        console.error("뉴스 상세 정보를 가져오는 중 오류 발생:", error);
+        console.error("API 오류:", error);
         throw error;
     }
 };
 
 
-export const useDetailQuery = (newsId) =>
-    useQuery({
-        queryKey: ["news-detail", newsId],
-        queryFn: fetchDetail,
-        staleTime: 1000 * 60 * 5, // 5분 동안 데이터 유지
-        cacheTime: 1000 * 60 * 30, // 30분 동안 캐시 유지
-        retry: 1, // 실패 시 1번 재시도
-        refetchOnWindowFocus: false, // 창이 포커스될 때 자동 리페치 안 함
+export const useDetailQuery = (newsId) => {
+    return useQuery({
+        queryKey: ['news-detail', newsId],
+        queryFn: () => fetchDetail({ queryKey: ['news-detail', newsId] }),
+        enabled: !!newsId,
+        suspense: false, // 컴포넌트에서 로딩 상태 처리
+        staleTime: 5 * 60 * 1000, // 5분 캐시
     });
+};
 
 export default useDetailQuery;
