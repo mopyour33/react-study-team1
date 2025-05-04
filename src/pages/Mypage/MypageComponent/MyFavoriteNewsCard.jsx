@@ -2,10 +2,12 @@ import React from 'react';
 import './MyFavoriteNewsCard.style.css';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import useUserInfo from '../../../stores/useUserInfo';
+import { useNavigate } from 'react-router-dom';
 
 const MyFavoriteNewsCard = ({ userId, newsItem, myNewsList }) => {
 
     const { updateUserInfo } = useUserInfo();
+    const navigate=useNavigate();
 
     const handleClickLike = (e) => {
         e.preventDefault();
@@ -15,15 +17,14 @@ const MyFavoriteNewsCard = ({ userId, newsItem, myNewsList }) => {
 
 
     return (
-        <a
-            href={newsItem.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ textDecoration: 'none' }}
-        >
             <div
                 className="card"
                 style={{ backgroundImage: `url(${newsItem.image_url})` }}
+                onClick={() =>
+                    navigate(`/news/${newsItem?.article_id}`, {
+                      state: { article: newsItem },
+                    })
+                  }
             >
                 <div className="overlay">
                     <div className="card-title">{newsItem.title}</div>
@@ -33,11 +34,7 @@ const MyFavoriteNewsCard = ({ userId, newsItem, myNewsList }) => {
                     </div>
                 </div>
             </div>
-        </a>
-
     )
 };
-
-
 
 export default MyFavoriteNewsCard
