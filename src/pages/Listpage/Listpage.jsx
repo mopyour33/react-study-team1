@@ -5,20 +5,23 @@ import ReactPaginate from "react-paginate";
 import NewsCard from "./components/NewsCard/NewsCard";
 import { useListNewsQuery } from "../../hooks/useList";
 import { useNavigate } from "react-router-dom";
+import CategoryBar  from "./components/CategoryBar/CategoryBar";
 
 const itemsPerPage = 6;
 
 const Listpage = () => {
   const [currentPage, setCurrentPage] = useState(0);
+  const [category, setCategory] = useState("all");
   const {
     data = [],
     isLoading,
     isError,
     error,
-  } = useListNewsQuery("top", {
+  } = useListNewsQuery(category, {
     retry: 3,
     retryDelay: 2000,
   });
+
   const navigate = useNavigate();
 
   // 로딩 중
@@ -72,6 +75,13 @@ const Listpage = () => {
   console.log("data", data);
   return (
     <Container sx={{ py: 4 }}>
+      <CategoryBar
+        selected={category}
+        onSelect={(value) => {
+          setCategory(value);
+          setCurrentPage(0);
+        }}
+      />
       <Grid
         container
         spacing={3}

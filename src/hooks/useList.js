@@ -4,9 +4,12 @@ import api from "../utils/api";
 const fetchListNews = async (category) => {
   try {
     const params = {
+      country: 'kr',
       language: 'ko',
+      q: category,
     };
 
+    console.log("params", params);
     const response = await api.get('/news', { params });
     if (response.data.status === 'error') {
       console.error('뉴스 요청 오류:', response.data.results.message);
@@ -34,5 +37,7 @@ export const useListNewsQuery = (category) => {
     queryKey: ["news-list", category],
     queryFn: () => fetchListNews(category),
     select: (result) => result.data.results,
+    retry: 3,
+    retryDelay: 2000,
   });
 };
