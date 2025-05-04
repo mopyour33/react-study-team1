@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, CardContent, CardMedia, Typography, Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import './SlideNewsCard.style.css';
 
 
 const SlideNewsCard = ({ news }) => {

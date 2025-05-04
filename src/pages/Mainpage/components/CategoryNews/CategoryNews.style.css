@@ -1,4 +1,9 @@
 .carousel-container{
     overflow: hidden;
-    height: 440px;
+    height: 360px;
+}
+
+.category-header {
+    text-align: left;
+    font-size: 2rem;
 }
