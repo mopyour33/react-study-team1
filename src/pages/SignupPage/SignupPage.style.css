@@ -73,10 +73,6 @@ button:focus .form-check-input:focus {
   padding: 8px 16px;
   font-weight: 500;
 }
-.signup-container .toggle-button {
-  font-size: 0.8rem;
-  padding: 6px 12px;
-}
 
 .signup-container .btn-check:checked + .btn {
   background-color: #000;
@@ -90,6 +86,14 @@ button:focus .form-check-input:focus {
 
 .signup-container .toggle-button:last-child {
   border-radius: 0 6px 6px 0;
+}
+
+.category-section h5 {
+  margin-bottom: 0.8rem;
+}
+
+.signup-container .category-section .form-check-label {
+  font-size: 0.85rem;
 }
 
 .email-input-group .form-control {

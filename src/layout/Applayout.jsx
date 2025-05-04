@@ -18,7 +18,7 @@ const Applayout = () => {
   const [expanded, setExpanded] = useState(false);
 
   const location = useLocation();
-  const isMypage = location.pathname === '/mypage';
+  const isMypage = location.pathname === "/mypage";
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
@@ -69,7 +69,7 @@ const Applayout = () => {
                   <Nav.Link
                     as="span"
                     onClick={() => {
-                      navigate("/mypage", { state: { userId } }); // userId를 넘김
+                      navigate("/mypage", { state: { userId } });
                       setExpanded(false); // 햄버거 메뉴 닫기용
                     }}
                     style={{ cursor: "pointer" }}
@@ -82,7 +82,11 @@ const Applayout = () => {
                       <Nav.Link
                         as="span"
                         onClick={() => {
-                          window.dispatchEvent(new CustomEvent("changeMypageMenu", { detail: "favorites" }));
+                          window.dispatchEvent(
+                            new CustomEvent("changeMypageMenu", {
+                              detail: "favorites",
+                            })
+                          );
                           setExpanded(false);
                         }}
                         style={{ cursor: "pointer" }}
@@ -92,7 +96,11 @@ const Applayout = () => {
                       <Nav.Link
                         as="span"
                         onClick={() => {
-                          window.dispatchEvent(new CustomEvent("changeMypageMenu", { detail: "interest" }));
+                          window.dispatchEvent(
+                            new CustomEvent("changeMypageMenu", {
+                              detail: "interest",
+                            })
+                          );
                           setExpanded(false);
                         }}
                         style={{ cursor: "pointer" }}
@@ -102,7 +110,11 @@ const Applayout = () => {
                       <Nav.Link
                         a="span"
                         onClick={() => {
-                          window.dispatchEvent(new CustomEvent("changeMypageMenu", { detail: "profile" }));
+                          window.dispatchEvent(
+                            new CustomEvent("changeMypageMenu", {
+                              detail: "profile",
+                            })
+                          );
                           setExpanded(false);
                         }}
                         style={{ cursor: "pointer" }}
