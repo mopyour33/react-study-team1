@@ -21,4 +21,37 @@
 
 .react-multi-carousel-track {
     height: auto !important;
-  }
+}
+
+@media screen and (max-width: 768px) {
+
+    .my-interest-wrapper {
+        padding: 10px;
+    }
+
+    .my-category-title {
+        font-size: 20px;
+        padding-left: 8px;
+        border-left: 4px solid #333;
+        margin-bottom: 24px;
+        text-align: left;
+    }
+
+    .category-block {
+        width: 92%;
+        /* ✅ 회색 박스 폭 줄이기 */
+        margin: 0 auto 20px auto;
+        /* ✅ 가운데 정렬 및 간격 */
+        padding: 12px;
+    }
+
+    .category-block h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+        padding-bottom: 4px;
+    }
+
+    .react-multi-carousel-track {
+        flex-wrap: nowrap;
+    }
+}
