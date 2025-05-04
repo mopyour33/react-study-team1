@@ -11,6 +11,7 @@ const TopNews = () => {
 
     const {data : topData, isLoading, isError, error} = useTopNewsQuery();
     console.log("탑 : ", topData)
+    const navigate = useNavigate();
 
     // hook 호출되지 않는 문제 확인 위해 최신기사는 임시로 셋팅 - 수정 예정
     const latestData = topData;
@@ -20,10 +21,8 @@ const TopNews = () => {
         return <h1>Loading...</h1>
     }
     if(isError){
-        return <Alert varient="danger">{error.message}</Alert>
+        return <Alert variant="danger">{error.message}</Alert>
     }
-
-    const navigate = useNavigate();
     
     
   return (

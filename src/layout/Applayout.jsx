@@ -13,7 +13,7 @@ import "./Applayout.style.css";
 import logoImage from "../assets/news_logo.png";
 
 const Applayout = () => {
-  const { isLoggedIn, setIsLoggedIn } = useSignupStore();
+  const { isLoggedIn, setIsLoggedIn, userId } = useSignupStore();
   const navigate = useNavigate();
   const [expanded, setExpanded] = useState(false);
 
