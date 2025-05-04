@@ -9,7 +9,7 @@ const SlideNewsCard = ({ news }) => {
     
   return (
     <Card sx={{ maxWidth: 345, borderRadius: 3, padding: 1 ,'&:hover': { backgroundColor: '#e0e0e0', cursor: 'pointer'}}} 
-        onClick={() => navigate(`/news/${news?.article_id}`)} className="card">
+        onClick={() => navigate(`/news/${news?.article_id}`,{ state: { article : news} })} className="card">
           <CardMedia component="img" height="180" image={news.image_url} alt={news.title} />
           <CardContent sx={{ padding: 1 }}>
             <Box display="flex" alignItems="center" mb={1}>

@@ -7,8 +7,9 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel as ResponsiveCarousel } from 'react-responsive-carousel';
 import { useTopNewsQuery } from '../../../../hooks/useTopNews';
 
-const TopNews = () => {
 
+const TopNews = () => {
+    const navigate = useNavigate();
     const {data : topData, isLoading, isError, error} = useTopNewsQuery();
     console.log("탑 : ", topData)
     const navigate = useNavigate();
@@ -23,8 +24,8 @@ const TopNews = () => {
     if(isError){
         return <Alert variant="danger">{error.message}</Alert>
     }
-    
-    
+
+
   return (
     <div className="topnews">
         <Row>
@@ -41,8 +42,9 @@ const TopNews = () => {
                     dynamicHeight={false}
                     transitionTime={0} 
                     >
+
                     {topData.map((top, index) => (
-                    <div className="top-img-box" key={index} onClick={() => navigate(`/news/${top?.article_id}`)}>
+                    <div className="top-img-box" key={index} onClick={() => navigate(`/news/${top?.article_id}`,{ state: {article :  top} })}>
                         <img className="top-img"                            
                             key={index} src={top.image_url} alt={`Carousel item ${index}`} />
                         <div className="top-img-overay"/>
@@ -60,13 +62,13 @@ const TopNews = () => {
         {/* 왼쪽 Col (index 0~4) */}
         <Col className="latest-col" xs={12} md={6}>
             {latestData.slice(0, 5).map((latest, index) => (
-            <Row key={index} className="mb-3" onClick={() => navigate(`/news/${latest?.article_id}`)}>
+            <Row key={index} className="mb-3" onClick={() => navigate(`/news/${latest?.article_id}`,{ state: { article : latest} })}>
                <Col xs={2} className="text-center">
                     <span className="rank-number">{index + 1}</span> {/* 순위 표시 */}
                 </Col>
                 {/* 기사 타이틀 */}
                 <Col xs={10}>
-                    <span className="fs-6 fw-bold d-block" style={{pointerEvents: "none"}}>{latest.title}</span>
+                    <span className="fs-6 fw-bold d-block">{latest.title}</span>
                 </Col>
             </Row>
             ))}
@@ -74,7 +76,7 @@ const TopNews = () => {
         {/* 오른쪽 Col (index 5~9) */}
         <Col xs={12} md={6}>
             {latestData.slice(5, 10).map((latest, index) => (
-           <Row key={index + 5} className="mb-3" onClick={() => navigate(`/news/${latest?.article_id}`)}>
+           <Row key={index + 5} className="mb-3" onClick={() => navigate(`/news/${latest?.article_id}`,{ state: { article : latest} })}>
                <Col xs={2} className="text-center">
                     <span className="rank-number">{index + 6}</span> {/* 순위 표시 */}
                 </Col>

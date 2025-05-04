@@ -7,11 +7,6 @@ const NewsCard = ({ image, category, title, description, onClick }) => {
     <Card sx={{ width: 345, borderRadius: 3 }} onClick={onClick}>
       <CardMedia component="img" height="180" image={image} alt={title} />
       <CardContent sx={{ height: "calc(100% - 180px)" }}>
-        <Box display="flex" alignItems="center" mb={1}>
-          <Typography variant="subtitle2" color="text.secondary">
-            {category}
-          </Typography>
-        </Box>
         <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
           {title}
         </Typography>
