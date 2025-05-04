@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Listpage.style.css";
 import { Container, Grid } from "@mui/material";
 import ReactPaginate from "react-paginate";
 import NewsCard from "./components/NewsCard/NewsCard";
 import { useListNewsQuery } from "../../hooks/useList";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import CategoryBar from "./components/CategoryBar/CategoryBar";
 
 const itemsPerPage = 6;
@@ -12,6 +12,7 @@ const itemsPerPage = 6;
 const Listpage = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [category, setCategory] = useState("all");
+  const location = useLocation();
   const {
     data = [],
     isLoading,
@@ -23,6 +24,15 @@ const Listpage = () => {
   });
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // URL 파라미터에서 category 값을 추출하여 상태로 설정
+    const params = new URLSearchParams(location.search);
+    const categoryFromUrl = params.get("category");
+    if (categoryFromUrl) {
+      setCategory(categoryFromUrl);
+    }
+  }, [location.search]);
 
   // 로딩 중
   if (isLoading) {
