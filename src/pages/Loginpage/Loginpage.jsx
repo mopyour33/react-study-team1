@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import useSignupStore from "../../stores/useSignupStore";
+import useUserInfo from "../../stores/useUserInfo";
 import "./Loginpage.style.css";
 import { Link } from "react-router-dom";
 
@@ -9,15 +10,26 @@ const Loginpage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { setIsLoggedIn, setUserId } = useSignupStore();
+  const userInfoList = useUserInfo((state) => state.userInfoList);
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log("userInfoList 상태 확인 👉", userInfoList);
+  }, [userInfoList]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsLoggedIn(true);
-    //수정
-    setUserId(username);
-    //수정
-    navigate("/");
+    const foundUser = userInfoList.find(
+      (user) => user.id === username && user.cusInfo.password === password
+    );
+    if (foundUser) {
+      setIsLoggedIn(true);
+      setUserId(foundUser.id);
+      navigate("/");
+    } else {
+      setErrorMessage("아이디 또는 비밀번호가 올바르지 않습니다.");
+    }
   };
 
   return (
@@ -29,6 +41,9 @@ const Loginpage = () => {
         <h2 className="text-center mb-4 fw-bold text-dark">LiveNews</h2>
 
         <Form onSubmit={handleSubmit}>
+          {errorMessage && (
+            <div className="text-danger mb-3 text-center">{errorMessage}</div>
+          )}
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Control
               type="text"
