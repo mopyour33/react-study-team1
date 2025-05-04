@@ -21,8 +21,8 @@ const Mainpage = () => {
   const [category, setCategory] = useState("all");
 
   useEffect(() => {
-    const isLogin = localStorage.getItem("isLoggedIn") === "true";
-
+    const isLogin = localStorage.getItem("isLoggedIn");
+    console.log("isLogin", isLogin);
     if (isLogin && userId) {
       const user = getUserInfoById(userId);
       console.log(user);
