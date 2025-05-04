@@ -18,9 +18,9 @@
   z-index: 1001;
 }
 
-/* .page-content {
-  margin-top: 200px;
-} */
+.page-content {
+  margin-top: 180px;
+}
 
 /* 네브바 스타일 */
 .custom-navbar {

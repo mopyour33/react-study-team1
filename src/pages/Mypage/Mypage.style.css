@@ -21,7 +21,6 @@
   overflow: hidden;
 }
 
-
 /* 왼쪽 메뉴 */
 .mypage-left {
   width: 300px;
@@ -67,7 +66,7 @@
   color: white;
 }
 
-.auth-popup>div {
+.auth-popup > div {
   padding: 24px;
   text-align: center;
   background-color: #fff5ec;
@@ -75,7 +74,7 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
-.auth-popup>.popup-content {
+.auth-popup > .popup-content {
   position: fixed !important;
   top: 50% !important;
   left: 50% !important;
@@ -92,7 +91,6 @@
 }
 
 @media screen and (max-width: 768px) {
-
   .mypage-left {
     display: none;
   }
@@ -120,5 +118,3 @@
     margin-top: 12px !important;
   }
 }
-
-;
