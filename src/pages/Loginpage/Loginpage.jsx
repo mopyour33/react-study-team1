@@ -8,12 +8,15 @@ import { Link } from "react-router-dom";
 const Loginpage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { setIsLoggedIn } = useSignupStore();
+  const { setIsLoggedIn, setUserId } = useSignupStore();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoggedIn(true);
+    //수정
+    setUserId(username);
+    //수정
     navigate("/");
   };
 

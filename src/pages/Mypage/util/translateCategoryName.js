@@ -3,8 +3,8 @@ import React from 'react'
 const translateCategoryName = (word, from, to) => {
 
   let returnWord = '';
-      //카테고리 체크박스
-  const categoryCheckbox = [
+      //wordlist
+  const wordList = [
     {key:'top',value:'주요 뉴스'},
     {key:'world',value:'세계 뉴스'},
     {key:'nation',value:'국가/국내 뉴스'},
@@ -13,15 +13,24 @@ const translateCategoryName = (word, from, to) => {
     {key:'entertainment',value:'연예/문화'},
     {key:'sports',value:'스포츠'},
     {key:'science',value:'과학'},
-    {key:'health',value:'건강/의료'}
+    {key:'health',value:'건강/의료'},
+    {key:'ID',value:'아이디'},
+    {key:'Password',value:'비밀번호'},
+    {key:'Email',value:'이메일주소'},
+    {key:'Name',value:'이름'},
+    {key:'Birth',value:'생년월일'},
+    {key:'Address',value:'주소'},
+    {key:'ZipCode',value:'우편번호'},
+    {key:'AddressDetail',value:'상세 주소'},    
+    {key:'PhoneNumber',value:'전화번호'},
   ];
 
   if(from==='english' && to === 'korean'){
-    returnWord = categoryCheckbox.find(item => item.key === word);    
+    returnWord = wordList.find(item => item.key === word);    
     return returnWord.value;
 
   } else if(from==='korean' && to === 'english'){
-    returnWord = categoryCheckbox.find(item => item.value === word);
+    returnWord = wordList.find(item => item.value === word);
     return returnWord.key;
   };
 }
