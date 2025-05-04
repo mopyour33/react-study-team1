@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Navbar,
   Container,
@@ -7,7 +7,7 @@ import {
   Button,
   Nav,
 } from "react-bootstrap";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
 import useSignupStore from "../stores/useSignupStore";
 import "./Applayout.style.css";
 import logoImage from "../assets/news_logo.png";
@@ -16,6 +16,17 @@ const Applayout = () => {
   const { isLoggedIn, setIsLoggedIn } = useSignupStore();
   const navigate = useNavigate();
   const [expanded, setExpanded] = useState(false);
+
+  const location = useLocation();
+  const isMypage = location.pathname === '/mypage';
+
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleLogout = () => {
     setIsLoggedIn(false);
@@ -55,16 +66,52 @@ const Applayout = () => {
 
               {isLoggedIn ? (
                 <>
-                  <span
+                  <Nav.Link
+                    as="span"
                     onClick={() => {
                       navigate("/mypage", { state: { userId } }); // userId를 넘김
                       setExpanded(false); // 햄버거 메뉴 닫기용
                     }}
-                    className="text-dark text-decoration-none me-3"
                     style={{ cursor: "pointer" }}
                   >
                     마이페이지
-                  </span>
+                  </Nav.Link>
+
+                  {isMypage && isMobile && (
+                    <>
+                      <Nav.Link
+                        as="span"
+                        onClick={() => {
+                          window.dispatchEvent(new CustomEvent("changeMypageMenu", { detail: "favorites" }));
+                          setExpanded(false);
+                        }}
+                        style={{ cursor: "pointer" }}
+                      >
+                        내가 찜한 뉴스
+                      </Nav.Link>
+                      <Nav.Link
+                        as="span"
+                        onClick={() => {
+                          window.dispatchEvent(new CustomEvent("changeMypageMenu", { detail: "interest" }));
+                          setExpanded(false);
+                        }}
+                        style={{ cursor: "pointer" }}
+                      >
+                        내 카테고리 뉴스
+                      </Nav.Link>
+                      <Nav.Link
+                        a="span"
+                        onClick={() => {
+                          window.dispatchEvent(new CustomEvent("changeMypageMenu", { detail: "profile" }));
+                          setExpanded(false);
+                        }}
+                        style={{ cursor: "pointer" }}
+                      >
+                        정보 변경
+                      </Nav.Link>
+                    </>
+                  )}
+
                   <Nav.Link
                     as="span"
                     onClick={() => {

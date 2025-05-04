@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid, Box, Button, IconButton } from '@mui/material';
 import "./Mypage.style.css";
 import MypageProfile from './MypageComponent/MypageProfile';
@@ -13,11 +13,6 @@ const Mypage = () => {
   const userId = location.state?.userId;
 
   const [selectedMenu, setSelectedMenu] = useState('profile');
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(prev => !prev);
-  }
 
   //카테고리 체크박스
   const categoryCheckbox = [
@@ -32,25 +27,26 @@ const Mypage = () => {
     { key: 'health', value: '건강/의료' }
   ];
 
+  useEffect(() => {
+    const handleChange = (e) => {
+      setSelectedMenu(e.detail);
+    };
+
+    window.addEventListener("changeMypageMenu", handleChange);
+    return () => window.removeEventListener("changeMypageMenu", handleChange);
+  }, []);
+
 
   return (
     <Box className="mypage-wrapper">
       <Box className="mypage-border">
 
-        {/* 모바일 전용 메뉴 버튼 */}
-        <Box className="mypage-mobile-menu-toggle">
-          <IconButton onClick={toggleMobileMenu} >
-            <MenuIcon />
-          </IconButton>
-        </Box>
-
         {/* 왼쪽 메뉴 영역 (1/3) */}
-        <Box className={`mypage-left ${isMobileMenuOpen ? 'open' : ''}`}>
+        <Box className='mypage-left'>
           <Button
             fullWidth
             onClick={() => {
               setSelectedMenu('favorites');
-              setIsMobileMenuOpen(false)
             }}
             className={`mypage-menu-button ${selectedMenu === 'favorites' ? 'selected' : ''}`}
           >
@@ -60,7 +56,6 @@ const Mypage = () => {
             fullWidth
             onClick={() => {
               setSelectedMenu('interest');
-              setIsMobileMenuOpen(false);
             }}
             className={`mypage-menu-button ${selectedMenu === 'interest' ? 'selected' : ''}`}
           >
@@ -70,22 +65,11 @@ const Mypage = () => {
             fullWidth
             onClick={() => {
               setSelectedMenu('profile');
-              setIsMobileMenuOpen(false);
             }}
             className={`mypage-menu-button ${selectedMenu === 'profile' ? 'selected' : ''}`}
           >
             정보 변경
           </Button>
-
-          {/* ✅ 모바일 하단 닫기 버튼 추가 */}
-          {isMobileMenuOpen && (
-            <Button
-              className="mobile-menu-close-button"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              메뉴 닫기
-            </Button>
-          )}
         </Box>
 
         {/* 오른쪽 콘텐츠 영역 (2/3) */}

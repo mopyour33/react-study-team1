@@ -33,7 +33,7 @@ const MyInterestCategoryNewsList = ({ myCategories, categoryNewsList }) => {
 
                 if (!Array.isArray(targetcategoryNewsList?.data) || targetcategoryNewsList.data.length === 0) {
                     return (
-                        <div  className='category-block' key={index}>
+                        <div className='category-block' key={index}>
                             <h3>{translateCategoryName(category, 'english', 'korean')}</h3>
                             <div className='category-block'>(데이터가 없어유 ㅠㅠ)</div>
                         </div>
