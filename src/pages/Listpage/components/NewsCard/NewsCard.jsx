@@ -18,7 +18,6 @@ const NewsCard = ({ image, category, title, description, onClick, article }) => 
 
   const toggleFavorite = (e) => {
     e.stopPropagation();
-    console.log("toggleFavorite", userId, article.article_id);
     if (isFavorited) {
       removeFavoriteNews(userId, article.article_id);
     } else {

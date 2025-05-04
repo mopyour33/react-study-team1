@@ -3,7 +3,7 @@ import api from "../utils/api";
 
 
 const fetchCategoryNews= (searchCategory )=>{
-    return api.get(`/news?language=ko&category=${searchCategory}`)
+    return api.get(`/news?language=ko&q=${searchCategory}`)
 }
 
 
