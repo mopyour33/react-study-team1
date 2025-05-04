@@ -56,11 +56,11 @@ const useUserInfo = create((set, get) => ({
   },
 
   // 새 유저 추가 함수 (회원가입 시 사용)
-  // addUserInfo: (newUser) => {
-  //   set((state) => ({
-  //     userInfoList: [...state.userInfoList, newUser], 기존 리스트에 새 유저 추가
-  //   }));
-  // },
+  addUserInfo: (newUser) => {
+    set((state) => ({
+      userInfoList: [...state.userInfoList, newUser], // 기존 리스트에 새 유저 추가
+    }));
+  },
 }));
 
 export default useUserInfo;
