@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import api from "../utils/api";
 
 
-const fetchCategoryNews= ({ category })=>{
+const fetchCategoryNews = ({ category }) => {
     console.log("훅 카테고리")
     console.log("요청 카테고리:", category);
 
@@ -10,21 +10,21 @@ const fetchCategoryNews= ({ category })=>{
 }
 
 
-export const useCategoryNewsQuery=({category})=>{
+export const useCategoryNewsQuery = ({ category }) => {
     return useQuery({
-        queryKey: ['news-category', {category}],
-        queryFn: () => fetchCategoryNews({caterory}),
-        select: (result) => result.data.results,        
+        queryKey: ['news-category', { category }],
+        queryFn: () => fetchCategoryNews({ category }),
+        select: (result) => result.data.results,
     })
 }
 
-  
 
-export const useSearchMovieQuery=({keyword, page, genre, sort})=>{
+
+export const useSearchMovieQuery = ({ keyword, page, genre, sort }) => {
     return useQuery({
-        queryKey: ['movie-searh', {keyword, page, genre, sort}],
-        queryFn: ()=>fetchSearchMovie({keyword, page, genre, sort}),
-        select: (result)=>result.data
+        queryKey: ['movie-searh', { keyword, page, genre, sort }],
+        queryFn: () => fetchSearchMovie({ keyword, page, genre, sort }),
+        select: (result) => result.data
 
     })
 }
