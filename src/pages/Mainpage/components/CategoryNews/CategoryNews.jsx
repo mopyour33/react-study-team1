@@ -4,10 +4,14 @@ import Carousel from "react-multi-carousel";
 import SlideNewsCard from "../NewsSlide/SlideNewsCard";
 import "./CategoryNews.style.css";
 import { useCategoryNewsQuery } from "../../../../hooks/useCategoryNews";
+import CategoryList from "../../../../config/categories";
 
 const CategoryNews = ({ category, index }) => {
-  const searchCategory = category.id;
+  // console.log("카테고리 뉴스", category); // 카테고리 확인
+  const searchCategory = category; // 카테고리 값
   const { data: categoryData, isError, isLoading, error } = useCategoryNewsQuery(searchCategory);
+
+  const categoryLabel = CategoryList.find((cat) => cat.value === category)?.label || "알 수 없음"; // 없으면 "알 수 없음"
 
   // 로딩 중 처리
   if (isLoading) {
@@ -60,7 +64,7 @@ const CategoryNews = ({ category, index }) => {
   return (
     <Row>
       <header className="category-header">
-        <strong>{category.name}</strong>
+        <strong>{categoryLabel}</strong>
       </header>
       <Carousel
         arrows
