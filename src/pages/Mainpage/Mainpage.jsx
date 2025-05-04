@@ -21,9 +21,11 @@ const Mainpage = () => {
   const [category, setCategory] = useState("all");
 
   useEffect(() => {
-    if (userId) {
+    const isLogin = localStorage.getItem("isLoggedIn") === "true";
+
+    if (isLogin && userId) {
       const user = getUserInfoById(userId);
-      
+      console.log(user);
       // 유저 정보가 정상적으로 반환된 경우에만 업데이트
       if (user && user.cusInfo && user.cusInfo.categoryILike) {
         setInterestCategory(user.cusInfo.categoryILike);
