@@ -73,6 +73,10 @@ button:focus .form-check-input:focus {
   padding: 8px 16px;
   font-weight: 500;
 }
+.signup-container .toggle-button {
+  font-size: 0.8rem;
+  padding: 6px 12px;
+}
 
 .signup-container .btn-check:checked + .btn {
   background-color: #000;
