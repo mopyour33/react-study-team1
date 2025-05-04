@@ -58,22 +58,25 @@ body {
     position: sticky;
     top: 20px;
     z-index: 30;
+    height: auto;
+    max-height: none;
 }
 
 .ad-item-2 {
     position: -webkit-sticky;
     position: sticky;
     top: 240px;
-    /* 첫 번째 광고 + 여백 */
     z-index: 20;
+    height: auto;
+    max-height: none;
 }
 
 .ad-item-3 {
     position: -webkit-sticky;
     position: sticky;
-    top: 460px;
-    /* 첫 번째 + 두 번째 광고 + 여백 */
+    top: 650px;
     z-index: 10;
+    height: auto;
 }
 
 .ad-image {
@@ -220,13 +223,13 @@ body {
         padding-top: 12px;
     }
 
-    /* 모바일 화면에서 광고 배너 스타일 조정 */
+
     .ad-column {
         padding-top: 20px;
         padding-bottom: 20px;
     }
 
-    /* 모바일에서는 sticky 제거하고 일반 흐름으로 설정 */
+
     .ad-item-1,
     .ad-item-2,
     .ad-item-3 {
@@ -238,7 +241,7 @@ body {
         padding: 0 15px;
     }
 
-    /* 모바일에서 컨테이너 정렬 */
+
     .article-column {
         justify-content: center;
         padding: 0 15px;
