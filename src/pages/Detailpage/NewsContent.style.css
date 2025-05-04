@@ -11,6 +11,22 @@
     overflow-wrap: break-word;
 }
 
+/* 뉴스 설명 영역 숨김 */
+div.news-description,
+div[class*="news-description"],
+div.news-description-container,
+div.news-description-wrapper,
+.news-description {
+    display: none !important;
+}
+
+/* 특정 색상 배경의 설명 영역 숨김 - 이미지에 보이는 파란색 배경 영역 */
+div[style*="background-color: rgb(222, 235, 255)"],
+div[style*="background-color:#DEEBFF"],
+div[style*="background-color: #DEEBFF"] {
+    display: none !important;
+}
+
 .news-content-body p {
     margin-bottom: 24px;
 }
