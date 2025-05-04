@@ -31,7 +31,9 @@ const Detailpage = () => {
     );
   }
 
-  if (!state.title) {
+  if (!state.news.title) {
+
+    console.log(state)
     return (
       <Container>
         <div className="detail-not-found">
@@ -46,7 +48,7 @@ const Detailpage = () => {
   }
 
 
-  const newsItem = state;
+  const newsItem = state.news;
 
   return (
     <Container>
