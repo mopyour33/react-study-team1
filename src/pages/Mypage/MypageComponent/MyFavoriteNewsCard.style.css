@@ -1,6 +1,6 @@
 .card {
-    width: 240px;
-    height: 320px;
+    width: 170px !important;
+    height: 240px !important;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -36,6 +36,7 @@
   }
   
   .card-title {
+    font-family: 'Arial Narrow', sans-serif;
     color: white;
     font-size: 17px;
     font-weight: 600;

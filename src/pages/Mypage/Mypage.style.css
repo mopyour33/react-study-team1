@@ -1,22 +1,24 @@
 /* 전체 화면을 고정하고 꽉 채우는 Wrapper */
 .mypage-wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100vh;
-  margin: 0;
-  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 /* 전체 테두리 박스 (가로/세로 모두 꽉 차게) */
 .mypage-border {
+  flex: 1;
   position: relative;
   width: 100%;
   height: 100%;
   display: flex;
-  border: 2px solid #000;
   box-sizing: border-box;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0, 1);
+  background-color: #fefcf9;
+  overflow: hidden;
 }
 
 
@@ -24,18 +26,26 @@
 .mypage-left {
   width: 33.33%;
   height: 100%;
-  border-right: 2px solid #000;
-  padding: 80px 20px;
+  border-right: 1px solid #ddd;
+  padding: 30px 20px;
   box-sizing: border-box;
+  overflow: auto;
+  background-color: #ffffff;
 }
 
 /* 오른쪽 콘텐츠 */
 .mypage-right {
   width: 66.66%;
   height: 100%;
-  padding: 80px 20px;
+  padding: 30px 20px;
   box-sizing: border-box;
-  overflow: auto;
+  overflow-y: auto;
+  background-color: #ffffff;
+}
+
+.my-interest-wrapper {
+  overflow: visible !important;
+  max-height: none !important;
 }
 
 /* 버튼 스타일 */
@@ -56,43 +66,16 @@
   color: white;
 }
 
-.mypage-mobile-menu-toggle {
-  display: none;
-  position: fixed;
-  top: 120px;
-  left: 20px;
-  z-index: 2000;
-  background-color: white;
-  padding: 6px;
-  border-radius: 4px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
 @media screen and (max-width: 768px) {
-  .mypage-mobile-menu-toggle {
-    display: block;
-  }
 
   .mypage-left {
-    position: fixed;
-    top: 100px;
-    left: -100%;
-    width: 70%;
-    max-width: 240px;
-    height: 100vh;
-    background-color: white;
-    z-index: 998;
-    transition: left 0.3s ease;
-    border-right: 2px solid #000;
-    padding-top: 80px;
-  }
-
-  .mypage-left.open {
-    left: 0;
+    display: none;
   }
 
   .mypage-right {
     width: 100%;
-    padding: 180px 20px;
+    padding: 20px 20px;
   }
-};
+}
+
+;

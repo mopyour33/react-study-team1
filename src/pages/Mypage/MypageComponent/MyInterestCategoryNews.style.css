@@ -13,5 +13,12 @@
 
 .my-interest-wrapper {
     padding: 13px;
-    background-color: #f9f9f9;
+    background-color: #ffff;
+    overflow: visible;
+    max-height: none;
+    height: auto;
 }
+
+.react-multi-carousel-track {
+    height: auto !important;
+  }

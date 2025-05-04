@@ -35,7 +35,7 @@ const MyInterestCategoryNews = ({ userId }) => {
                 myCategories={userInfo.cusInfo.categoryILike}
                 categoryNewsList={myIntertestCategoryNewsData}
             />
-            <br/>
+            <br />
         </div>
     )
 }
