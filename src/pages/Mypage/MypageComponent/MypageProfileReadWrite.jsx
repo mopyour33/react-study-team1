@@ -1,11 +1,12 @@
 import React from 'react';
 import { Form, Button, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import translateCategoryName from '../util/translateCategoryName';
 
 const MypageProfileReadWrite = ({ item, itemModify, setItemModify, itemValue, setItemValue }) => {
   return (
     <Form.Group as={Col} controlId={`formGrid_${item}`}>
-      <Form.Label>{item}</Form.Label>
+      <Form.Label>{translateCategoryName(item, 'english', 'korean')}</Form.Label>
       <div className="form-readwrite-row">
         <Form.Control
           type={item === "Password" ? "password" : "text"}

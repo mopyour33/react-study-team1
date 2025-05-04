@@ -20,7 +20,7 @@ const MypageProfile = ({ userId, categoryCheckbox }) => {
 
     const [passwdModify, setPasswdModify] = useState(false);
     const [emailModify, setEmailModify] = useState(false);
-    const [cityModify, setCityModify] = useState(false);
+    const [addressModify, setAddressModify] = useState(false);
     const [zipCodeModify, setZipCodeModify] = useState(false);
     const [addressDetailModify, setAddressDetailModify] = useState(false);
     const [phoneNumberModify, setPhoneNumberModify] = useState(false);
@@ -114,11 +114,11 @@ const MypageProfile = ({ userId, categoryCheckbox }) => {
                 <div className="city-zipcode-group">
                     {/* 도시 읽기/수정 가능 */}
                     <MypageProfileReadWrite
-                        item="City"
-                        itemModify={cityModify}
-                        setItemModify={setCityModify}
-                        itemValue={formData.city}
-                        setItemValue={(val) => handleChange("city", val)} />
+                        item="Address"
+                        itemModify={addressModify}
+                        setItemModify={setAddressModify}
+                        itemValue={formData.address}
+                        setItemValue={(val) => handleChange("address", val)} />
 
                     {/* zipcode 읽기 가능/수정 가능 */}
                     < MypageProfileReadWrite
@@ -164,7 +164,7 @@ const MypageProfile = ({ userId, categoryCheckbox }) => {
                 <Row>
                     {/* 전화번호 읽기 가능/수정 가능 */}
                     <MypageProfileReadWrite
-                        item="전화번호"
+                        item="PhoneNumber"
                         itemModify={phoneNumberModify}
                         setItemModify={setPhoneNumberModify}
                         itemValue={formData.phoneNumber}
