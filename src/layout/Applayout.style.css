@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap");
 
 /* 입력창 포커스 스타일 */
 .custom-input:focus {
@@ -60,7 +60,7 @@
 
 /* 메인 로고 텍스트 */
 .main-logo-text {
-  font-family: "Great Vibes", cursive;
+  font-family: "Cinzel Decorative", serif;
   font-size: 3rem;
   font-weight: 900;
   text-transform: uppercase;

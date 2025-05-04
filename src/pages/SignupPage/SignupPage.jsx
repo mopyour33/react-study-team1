@@ -6,13 +6,14 @@ import {
   FormControl,
   ToggleButtonGroup,
   ToggleButton,
-  Dropdown,
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./SignupPage.style.css";
+import useUserInfo from "../../stores/useUserInfo";
 
 const SignupPage = () => {
+  const { addUserInfo } = useUserInfo();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -20,11 +21,12 @@ const SignupPage = () => {
     name: "",
     birthDate: "",
     carrier: "",
-    gender: "",
-    nationality: "",
+    gender: "male",
+    nationality: "local",
     phone: "",
     address: "",
     detailAddress: "",
+    zipcode: "",
     agreeTerms: false,
   });
 
@@ -38,8 +40,39 @@ const SignupPage = () => {
     }));
   };
 
+  const carrierMap = {
+    SKT: "1",
+    KT: "2",
+    "LGU+": "3",
+    "SKT 알뜰폰": "4",
+    "KT 알뜰폰": "5",
+    "LGU+ 알뜰폰": "6",
+  };
+
   const handleFormSubmit = (e) => {
+    console.log("폼 제출 시작!");
     e.preventDefault();
+
+    const newUser = {
+      id: formData.username,
+      cusInfo: {
+        password: formData.password,
+        email: formData.email,
+        name: formData.name,
+        birth: formData.birthDate,
+        city: formData.address,
+        zipCode: formData.zipcode || "",
+        addressDetail: formData.detailAddress,
+        phoneNumber: formData.phone,
+        mobileCompany: carrierMap[formData.carrier] || "0",
+        sex: formData.gender === "male" ? "1" : "2",
+        nationality: formData.nationality === "local" ? "1" : "2",
+        categoryILike: [],
+        myFavoriteNews: [],
+      },
+    };
+    console.log("회원가입 버튼 클릭됨!");
+    addUserInfo(newUser);
     navigate("/");
   };
 
@@ -56,7 +89,6 @@ const SignupPage = () => {
             value={formData.username}
             onChange={handleInputChange}
             placeholder="아이디"
-            required
           />
           <InputGroup.Text className="github-text">@github.com</InputGroup.Text>
         </InputGroup>
@@ -71,7 +103,6 @@ const SignupPage = () => {
             value={formData.password}
             onChange={handleInputChange}
             placeholder="비밀번호"
-            required
           />
         </InputGroup>
 
@@ -97,7 +128,6 @@ const SignupPage = () => {
             value={formData.name}
             onChange={handleInputChange}
             placeholder="이름"
-            required
           />
         </InputGroup>
 
@@ -110,7 +140,6 @@ const SignupPage = () => {
             value={formData.birthDate}
             onChange={handleInputChange}
             placeholder="생년월일 8자리"
-            required
           />
         </InputGroup>
 
@@ -124,7 +153,6 @@ const SignupPage = () => {
               setFormData({ ...formData, carrier: e.target.value })
             }
             className="custom-select"
-            required
           >
             <option value="">통신사 선택</option>
             {[
@@ -149,10 +177,18 @@ const SignupPage = () => {
             value={formData.gender}
             onChange={(val) => setFormData({ ...formData, gender: val })}
           >
-            <ToggleButton value="male" className="toggle-button">
+            <ToggleButton
+              id="gender-male"
+              value="male"
+              className="toggle-button"
+            >
               남자
             </ToggleButton>
-            <ToggleButton value="female" className="toggle-button">
+            <ToggleButton
+              id="gender-female"
+              value="female"
+              className="toggle-button"
+            >
               여자
             </ToggleButton>
           </ToggleButtonGroup>
@@ -163,10 +199,18 @@ const SignupPage = () => {
             value={formData.nationality}
             onChange={(val) => setFormData({ ...formData, nationality: val })}
           >
-            <ToggleButton value="local" className="toggle-button">
+            <ToggleButton
+              id="nationality-local"
+              value="local"
+              className="toggle-button"
+            >
               내국인
             </ToggleButton>
-            <ToggleButton value="foreigner" className="toggle-button">
+            <ToggleButton
+              id="nationality-foreigner"
+              value="foreigner"
+              className="toggle-button"
+            >
               외국인
             </ToggleButton>
           </ToggleButtonGroup>
@@ -181,7 +225,42 @@ const SignupPage = () => {
             value={formData.phone}
             onChange={handleInputChange}
             placeholder="휴대전화번호"
-            required
+          />
+        </InputGroup>
+
+        <InputGroup className="mb-3">
+          <InputGroup.Text>
+            <i className="bi bi-geo-alt" />
+          </InputGroup.Text>
+          <FormControl
+            name="address"
+            value={formData.address}
+            onChange={handleInputChange}
+            placeholder="주소 (카카오 API 연동)"
+          />
+        </InputGroup>
+
+        <InputGroup className="mb-3">
+          <InputGroup.Text>
+            <i className="bi bi-map" />
+          </InputGroup.Text>
+          <FormControl
+            name="detailAddress"
+            value={formData.detailAddress}
+            onChange={handleInputChange}
+            placeholder="상세 주소"
+          />
+        </InputGroup>
+
+        <InputGroup className="mb-3">
+          <InputGroup.Text>
+            <i className="bi bi-mailbox" />
+          </InputGroup.Text>
+          <FormControl
+            name="zipcode"
+            value={formData.zipcode}
+            onChange={handleInputChange}
+            placeholder="우편번호"
           />
         </InputGroup>
 
@@ -198,10 +277,9 @@ const SignupPage = () => {
             setFormData({ ...formData, agreeTerms: e.target.checked })
           }
           className="mb-3"
-          required
         />
 
-        <Button variant="success" type="submit" className="w-100">
+        <Button variant="dark" type="submit" className="w-100">
           회원가입
         </Button>
 
