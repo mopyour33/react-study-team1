@@ -1,0 +1,37 @@
+.category-bar {
+    display: flex;
+    justify-content: center;
+    gap: 12px; /* 버튼 간 간격을 더 좁혀서 한 줄에 더 많은 버튼을 배치 */
+    margin-bottom: 32px;
+    flex-wrap: wrap; /* 화면 크기에 맞춰 자동으로 줄바꿈 되도록 */
+    padding: 0 10px; /* 양옆에 여백 추가 */
+  }
+  
+  .category-button {
+    padding: 10px 18px; /* 패딩을 줄여서 버튼 크기 감소 */
+    font-size: 14px; /* 글자 크기를 조금 더 작게 */
+    border-radius: 30px;
+    background: transparent; /* 배경을 투명으로 설정 */
+    color: #333; /* 텍스트 색상을 어두운 색으로 */
+    font-weight: bold;
+    border: 2px solid #ccc; /* 테두리 추가 */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-transform: capitalize; /* 텍스트 대소문자 구분 */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 140px; /* 버튼 크기를 더 작게 제한 */
+  }
+  
+ .category-button:hover {
+  background: rgba(0, 0, 0, 0.8); /* 마우스 오버 시 배경색 변경 (검은색) */
+  color: #ffffff; /* 텍스트 색상 변경 (하얀색) */
+  border-color: #ffffff; /* 테두리 색상 변경 (하얀색) */
+}
+
+.category-button.active {
+  background: rgba(0, 0, 0, 1); /* 선택된 버튼의 배경 색상 (완전 검은색) */
+  color: #ffffff; /* 선택된 버튼의 텍스트 색상 (하얀색) */
+  border-color: #333333; /* 선택된 버튼의 테두리 색상 (어두운 검은색) */
+}

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Alert, Col, Row } from "react-bootstrap";
+import React from "react";
+import { Alert, Col, Row, Container, Spinner } from "react-bootstrap";
 import "./TopNews.style.css";
 import { useNavigate } from "react-router-dom";
 
@@ -8,18 +8,33 @@ import { Carousel as ResponsiveCarousel } from "react-responsive-carousel";
 import { useTopNewsQuery } from "../../../../hooks/useTopNews";
 
 const TopNews = () => {
-    const navigate = useNavigate();
-    const { data: topData, isLoading, isError, error } = useTopNewsQuery();
-    console.log("탑 : ", topData)
-
-  // hook 호출되지 않는 문제 확인 위해 최신기사는 임시로 셋팅 - 수정 예정
-  const latestData = topData;
+  const { data: topData = [], isLoading, isError, error } = useTopNewsQuery();  // 기본값 빈 배열로 설정
+  const navigate = useNavigate();
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return (
+      <Container className="text-center">
+        <Spinner animation="border" variant="primary" />
+        <p>뉴스를 불러오는 중입니다...</p>
+      </Container>
+    );
   }
+
   if (isError) {
-    return <Alert variant="danger">{error.message}</Alert>;
+    return (
+      <Container className="text-center">
+        <p>뉴스를 불러오는 데 문제가 발생했습니다. {error?.message}</p>
+      </Container>
+    );
+  }
+
+  // topData가 비어 있을 경우 처리
+  if (topData.length === 0) {
+    return (
+      <Container className="text-center">
+        <Alert variant="danger">뉴스 데이터를 불러올 수 없습니다.</Alert>
+      </Container>
+    );
   }
 
   return (
@@ -50,13 +65,11 @@ const TopNews = () => {
               >
                 <img
                   className="top-img"
-                  key={index}
                   src={top.image_url}
                   alt={`Carousel item ${index}`}
                 />
                 <div className="top-img-overay" />
-                <div className="top-headline">헤드라인 뉴스</div>{" "}
-                {/* 주황색 배경 추가 */}
+                <div className="top-headline">헤드라인 뉴스</div>
                 <div className="top-img-title">{top.title}</div>
               </div>
             ))}
@@ -67,9 +80,8 @@ const TopNews = () => {
         <header className="latest-header">
           <strong>최신 뉴스</strong>
         </header>
-        {/* 왼쪽 Col (index 0~4) */}
         <Col className="latest-col" xs={12} md={6}>
-          {latestData.slice(0, 5).map((latest, index) => (
+          {topData.slice(0, 5).map((latest, index) => (
             <Row
               key={index}
               className="mb-3"
@@ -80,19 +92,16 @@ const TopNews = () => {
               }
             >
               <Col xs={2} className="text-center">
-                <span className="rank-number">{index + 1}</span>{" "}
-                {/* 순위 표시 */}
+                <span className="rank-number">{index + 1}</span>
               </Col>
-              {/* 기사 타이틀 */}
               <Col xs={10}>
                 <span className="fs-6 fw-bold d-block">{latest.title}</span>
               </Col>
             </Row>
           ))}
         </Col>
-        {/* 오른쪽 Col (index 5~9) */}
         <Col xs={12} md={6}>
-          {latestData.slice(5, 10).map((latest, index) => (
+          {topData.slice(5, 10).map((latest, index) => (
             <Row
               key={index + 5}
               className="mb-3"
@@ -103,10 +112,8 @@ const TopNews = () => {
               }
             >
               <Col xs={2} className="text-center">
-                <span className="rank-number">{index + 6}</span>{" "}
-                {/* 순위 표시 */}
+                <span className="rank-number">{index + 6}</span>
               </Col>
-              {/* 기사 타이틀 */}
               <Col xs={10}>
                 <span className="fs-6 fw-bold d-block">{latest.title}</span>
               </Col>

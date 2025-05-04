@@ -1,69 +1,69 @@
 .card {
-    width: 170px !important;
-    height: 240px !important;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    border-radius: 12px;
-    overflow: hidden;
-    margin: 0 6px !important;
-    position: relative;
-    cursor: pointer;
-    display: flex;
-    align-items: flex-end;
-    transition: transform 0.3s ease;
-  }
-  
-  .card:hover{
-    transform: scale(1.05);
+  width: 170px !important;
+  height: 240px !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 0 6px !important;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+  transition: transform 0.3s ease;
+}
+
+.card:hover{
+  transform: scale(1.05);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.card:hover::before{
+  opacity: 1;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  padding: 0 12px 12px 3px;
+  box-sizing: border-box;
+  background-color: transparent;
+  z-index: 2;
+}
+
+.card-title {
+  font-family: 'Arial Narrow', sans-serif;
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4 !important;
+  opacity: 1;
+  text-align: left;
+  transition: opacity 0.3s ease;
+  word-break: keep-all;
+}
+
+@media screen and (max-width:768px) {
+  .react-multi-carousel-track {
+    justify-content: center !important;
+    display: flex !important;
   }
 
-  .card::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 1;
+  .react-multi-carousel-item {
+    display: flex !important;
+    justify-content: center !important;
   }
-  
-  .card:hover::before{
-    opacity: 1;
-  }
-
-  .overlay {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-start !important;
-    align-items: center !important;
-    padding: 0 12px 12px 3px;
-    box-sizing: border-box;
-    background-color: transparent;
-    z-index: 2;
-  }
-  
-  .card-title {
-    font-family: 'Arial Narrow', sans-serif;
-    color: white;
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 1.4 !important;
-    opacity: 1;
-    text-align: left;
-    transition: opacity 0.3s ease;
-    word-break: keep-all;
-  }
-  
-  @media screen and (max-width:768px) {
-    .react-multi-carousel-track {
-      justify-content: center !important;
-      display: flex !important;
-    }
-
-    .react-multi-carousel-item {
-      display: flex !important;
-      justify-content: center !important;
-    }
-  }
+}

@@ -7,7 +7,7 @@ const fetchTopNews=()=>{
     
     //https://newsdata.io/api/1/news?apikey=pub_83984afe5a4832eea50f96310250e5308e613&language=ko&category=technology&q=인공지능
 
-    return api.get(`/news?language=ko&category=top`)
+    return api.get(`/news?language=ko&q=top`)
 }
 
 

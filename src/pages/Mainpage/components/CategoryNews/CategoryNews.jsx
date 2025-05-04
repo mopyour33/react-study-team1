@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Row } from "react-bootstrap";
+import { Row, Spinner, Alert } from "react-bootstrap";
 import Carousel from "react-multi-carousel";
 import SlideNewsCard from "../NewsSlide/SlideNewsCard";
 import "./CategoryNews.style.css";
@@ -7,7 +7,28 @@ import { useCategoryNewsQuery } from "../../../../hooks/useCategoryNews";
 
 const CategoryNews = ({ category, index }) => {
   const searchCategory = category.id;
-  const { data: categoryData } = useCategoryNewsQuery(searchCategory);
+  const { data: categoryData, isError, isLoading, error } = useCategoryNewsQuery(searchCategory);
+
+  // 로딩 중 처리
+  if (isLoading) {
+    return (
+      <Row className="text-center">
+        <Spinner animation="border" variant="primary" />
+        <p>카테고리 뉴스를 불러오는 중입니다...</p>
+      </Row>
+    );
+  }
+
+  // 에러 처리
+  if (isError) {
+    return (
+      <Row className="text-center">
+        <Alert variant="danger">
+          {error?.message || "카테고리 뉴스를 불러오는 데 문제가 발생했습니다."}
+        </Alert>
+      </Row>
+    );
+  }
 
   const responsive = {
     medium: {
