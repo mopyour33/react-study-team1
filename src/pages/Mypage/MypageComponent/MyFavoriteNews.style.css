@@ -19,3 +19,10 @@
   padding-left: 12px;
   padding-bottom: 8px;
 }
+
+@media screen and (max-width: 768px) {
+  .my-favorite-wrapper {
+    max-width: 94%;
+    margin: 0 auto;
+  }
+}
