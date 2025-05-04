@@ -54,6 +54,7 @@ const TopNews = () => {
             transitionTime={0}
           >
             {topData.map((top, index) => (
+              
               <div
                 className="top-img-box"
                 key={index}
@@ -65,7 +66,7 @@ const TopNews = () => {
               >
                 <img
                   className="top-img"
-                  src={top.image_url}
+                  src={top.image_url? top.image_url : "https://dummyimage.com/300x200/cccccc/ffffff&text=No+Image"} 
                   alt={`Carousel item ${index}`}
                 />
                 <div className="top-img-overay" />
