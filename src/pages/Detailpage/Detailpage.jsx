@@ -1,6 +1,5 @@
 import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useDetailQuery } from '../../hooks/useDetail';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import "./Detailpage.style.css";
 
@@ -10,18 +9,18 @@ import NewsImages from './NewsImages';
 import KeywordSection from './KeywordSection';
 
 const Detailpage = () => {
-  const { id } = useParams();
   const navigate = useNavigate();
-  const { data: Detail } = useDetailQuery(id);
+  const location = useLocation();
+  const { state } = location;
 
+  console.log('state:', state);
 
   const handleShareClick = () => {
     console.log('공유 기능은 현재 구현되지 않았습니다.');
     alert('공유 기능은 현재 개발 중입니다.');
   };
 
-  
-  if (!Detail) {
+  if (!state) {
     return (
       <Container>
         <div className="detail-loading">
@@ -32,13 +31,12 @@ const Detailpage = () => {
     );
   }
 
-
-  if (!Detail || !Detail.results || Detail.results.length === 0) {
+  if (!state.title) {
     return (
       <Container>
         <div className="detail-not-found">
           <h2>해당 뉴스를 찾을 수 없습니다</h2>
-          <p>요청하신 기사가 더 이상 존재하지 않습니다다.</p>
+          <p>요청하신 기사가 더 이상 존재하지 않습니다.</p>
           <button className="btn-go-back" onClick={() => navigate(-1)}>
             이전 페이지로 돌아가기
           </button>
@@ -47,7 +45,8 @@ const Detailpage = () => {
     );
   }
 
-  const newsItem = Detail.results[0];
+
+  const newsItem = state;
 
   return (
     <Container>
