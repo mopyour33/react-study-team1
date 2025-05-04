@@ -6,18 +6,18 @@ const useUserInfo = create((set, get) => ({
     {
       id: "AAA",
       cusInfo: {
-        password: "123",
-        email: "111@naver.com",
+        password: "12345",
+        email: "abc1234@naver.com",
         name: "홍길동",
-        birth: "911111",
-        city: "seoul",
+        birth: "19911111",
+        address: "서울시 송파구 송파대로 567",
         zipCode: "11111",
-        addressDetail: "홍길동로 111, 222동 333호(홍길동 아파트)",
+        addressDetail: "222동 333호(홍길동 아파트)",
         phoneNumber: "010-1111-4444",
         mobileCompany: "1", // 1: SKT, 2: KT, 3:LGU+
         sex: "1", //1:남자, 2:여자
         nationality: "1", //1:내국인, 2: 외국인
-        categoryILike: ["top", "world", "nation", "sports"],
+        categoryILike: ["top", "world", "sports"],
         myFavoriteNews: [
           //로그인한 사용자가 찜한 기사는 여기에 저장됨. 받아오신 기사 object 그대로 넣어주셔도 됩니다.
           {
@@ -56,11 +56,11 @@ const useUserInfo = create((set, get) => ({
   },
 
   // 새 유저 추가 함수 (회원가입 시 사용)
-  // addUserInfo: (newUser) => {
-  //   set((state) => ({
-  //     userInfoList: [...state.userInfoList, newUser], 기존 리스트에 새 유저 추가
-  //   }));
-  // },
+  addUserInfo: (newUser) => {
+    set((state) => ({
+      userInfoList: [...state.userInfoList, newUser], // 기존 리스트에 새 유저 추가
+    }));
+  },
 }));
 
 export default useUserInfo;

@@ -7,6 +7,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel as ResponsiveCarousel } from 'react-responsive-carousel';
 import { useTopNewsQuery } from '../../../../hooks/useTopNews';
 
+
 const TopNews = () => {
     const navigate = useNavigate();
     const { data: topData, isLoading, isError, error } = useTopNewsQuery();
@@ -22,6 +23,7 @@ const TopNews = () => {
     if (isError) {
         return <Alert variant="danger">{error.message}</Alert>
     }
+
 
     return (
         <div className="topnews">
@@ -65,7 +67,7 @@ const TopNews = () => {
                             </Col>
                             {/* 기사 타이틀 */}
                             <Col xs={10}>
-                                <span className="fs-6 fw-bold d-block" style={{ pointerEvents: "none" }}>{latest.title}</span>
+                                <span className="fs-6 fw-bold d-block">{latest.title}</span>
                             </Col>
                         </Row>
                     ))}
@@ -73,7 +75,7 @@ const TopNews = () => {
                 {/* 오른쪽 Col (index 5~9) */}
                 <Col xs={12} md={6}>
                     {latestData.slice(5, 10).map((latest, index) => (
-                        <Row key={index + 5} className="mb-3" onClick={() => navigate(`/news/${latest?.article_id}`, { state: { latest } })}>
+                        <Row key={index + 5} className="mb-3" onClick={() => navigate(`/news/${latest?.article_id}`, { state: { article: latest } })}>
                             <Col xs={2} className="text-center">
                                 <span className="rank-number">{index + 6}</span> {/* 순위 표시 */}
                             </Col>

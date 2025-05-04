@@ -1,23 +1,20 @@
 import React from 'react';
 import './MyNewsCard.style.css';
+import { useNavigate } from 'react-router-dom';
 
 const MyNewsCard = ({ newsList }) => {
+
+  const navigate = useNavigate();
   return (
-    <a
-      href={newsList.link}
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{ textDecoration: 'none' }}
+    <div
+      className="card"
+      style={{ backgroundImage: `url(${newsList.image_url})` }}
+      onClick={() => navigate(`/news/${newsList?.article_id}`)}
     >
-      <div
-        className="card"
-        style={{ backgroundImage: `url(${newsList.image_url})` }}
-      >
-        <div className="overlay">
-          <div className="card-title">{newsList.title}</div>
-        </div>
+      <div className="overlay">
+        <div className="card-title">{newsList.title}</div>
       </div>
-    </a>
+    </div>
   );
 };
 
