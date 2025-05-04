@@ -1,3 +1,11 @@
+.mypage-profile-box {
+    background-color: #fefefe;
+    padding: 10px;
+    border-radius: 12px;
+    margin-bottom: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 .city-zipcode-group,
 .phonecompany-sex-nationality-group {
     display: flex;
@@ -43,24 +51,61 @@
     white-space: nowrap;
 }
 
+.mypage-profile-button-group {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.mypage-profile-button {
+    min-width: 80px;
+    padding: 8px 24px;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    display: inline-block;
+}
+
+form,
+.mypage-right {
+    overflow-x: hidden;
+}
+
+.popup-content {
+    background-color: #f0f4f8 !important;
+    border-radius: 12px;
+    width: 400px !important;
+    padding: 5px 5px !important;
+    font-size: 10px !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+
 
 @media screen and (max-width: 768px) {
- .city-zipcode-group >div,
- .phonecompany-sex-nationality-group > div {
-    flex: 1 1 100%;
- }
 
- .form-readwrite-row {
-    flex-direction: column;
-    align-items: flex-start;
- }
+    .city-zipcode-group>div,
+    .phonecompany-sex-nationality-group>div {
+        flex: 1 1 100%;
+    }
 
- .form-readwrite-row button {
-    width: 100%;
-    text-align: center;
- }
+    .form-readwrite-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
- .form-control {
-     width: 100%;
- }
+    .form-readwrite-row button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .form-control {
+        width: 100%;
+    }
+
+    .popup-content {
+        width: 220px !important;
+    }
 }
