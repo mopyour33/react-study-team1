@@ -16,8 +16,24 @@ const Detailpage = () => {
   console.log('state:', state);
 
   const handleShareClick = () => {
-    console.log('공유 기능은 현재 구현되지 않았습니다.');
-    alert('공유 기능은 현재 개발 중입니다.');
+    const shareData = {
+      title: newsItem.title,
+      text: newsItem.description || '',
+      url: window.location.href
+    };
+
+    if (navigator.share && navigator.canShare(shareData)) {
+      // Web Share API가 지원되는 경우
+      navigator.share(shareData)
+        .then(() => console.log('공유 완료'))
+        .catch((error) => {
+          console.error('공유 중 오류 발생:', error);
+          fallbackShare();
+        });
+    } else {
+      // Web Share API가 지원되지 않는 경우
+      fallbackShare();
+    }
   };
 
   if (!state) {
@@ -31,9 +47,9 @@ const Detailpage = () => {
     );
   }
 
-  if (!state.news.title) {
 
-    console.log(state)
+  if (!state.article) {
+    console.log('article이 없음:', state);
     return (
       <Container>
         <div className="detail-not-found">
@@ -47,36 +63,47 @@ const Detailpage = () => {
     );
   }
 
+  const newsItem = state.article;
 
-  const newsItem = state.news;
+  if (!newsItem.title) {
+    console.log('title이 없음:', newsItem);
+    return (
+      <Container>
+        <div className="detail-not-found">
+          <h2>해당 뉴스를 찾을 수 없습니다</h2>
+          <p>요청하신 기사의 제목 정보가 없습니다.</p>
+          <button className="btn-go-back" onClick={() => navigate(-1)}>
+            이전 페이지로 돌아가기
+          </button>
+        </div>
+      </Container>
+    );
+  }
 
   return (
     <Container>
-      <div className="detail-page">
-        <button className="btn-go-back" onClick={() => navigate(-1)}>
-          뒤로 가기
-        </button>
 
-        <div className="detail-container">
-          <NewsHeader
-            newsItem={newsItem}
-            onShareClick={handleShareClick}
-          />
 
-          <NewsImages
-            imageUrl={newsItem.image_url}
-            caption={newsItem.image_caption || newsItem.title}
-          />
+      <div className="detail-container">
+        <NewsHeader
+          newsItem={newsItem}
+          onShareClick={handleShareClick}
+        />
 
-          <NewsContent
-            content={newsItem.content}
-            description={newsItem.description}
-            link={newsItem.link}
-          />
+        <NewsImages
+          imageUrl={newsItem.image_url}
+          caption={newsItem.image_caption || newsItem.title}
+        />
 
-          <KeywordSection keywords={newsItem.keywords} />
-        </div>
+        <NewsContent
+          content={newsItem.content}
+          description={newsItem.description}
+          link={newsItem.link}
+        />
+
+        <KeywordSection keywords={newsItem.keywords} />
       </div>
+
     </Container>
   );
 };

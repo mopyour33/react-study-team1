@@ -21,6 +21,25 @@ body {
     border-radius: 0;
     border-top: 1px solid #e0e0e0;
     position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.news-header {
+    order: 1;
+}
+
+.news-images {
+    order: 2;
+}
+
+.news-content {
+    order: 3;
+}
+
+.keyword-section {
+    order: 4;
 }
 
 .news-title {
@@ -32,6 +51,7 @@ body {
     color: #111;
     letter-spacing: -0.5px;
 }
+
 
 .news-description {
     font-family: 'Noto Sans KR', sans-serif;
