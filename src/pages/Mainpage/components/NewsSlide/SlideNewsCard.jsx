@@ -6,11 +6,14 @@ import './SlideNewsCard.style.css';
 
 const SlideNewsCard = ({ news }) => {
   const navigate = useNavigate();
-    
+  let card_img = news.image_url;
+  if (news.image_url === null) {
+    card_img= "https://dummyimage.com/300x200/cccccc/ffffff&text=No+Image";
+  }
   return (
     <Card sx={{ maxWidth: 345, borderRadius: 3, padding: 1 ,'&:hover': { backgroundColor: '#e0e0e0', cursor: 'pointer'}}} 
         onClick={() => navigate(`/news/${news?.article_id}`,{ state: { article : news} })} className="card">
-          <CardMedia component="img" height="180" image={news.image_url} alt={news.title} />
+          <CardMedia component="img" className="cardImg" image={card_img} alt={news.title} />
           <CardContent sx={{ padding: 1 }}>
             <Box display="flex" alignItems="center" mb={1}>
               <img src={news.source_icon} alt="{news.source_name}" width={20} height={20} style={{ marginRight: 1 }} />
