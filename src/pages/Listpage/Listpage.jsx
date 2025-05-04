@@ -5,7 +5,7 @@ import ReactPaginate from "react-paginate";
 import NewsCard from "./components/NewsCard/NewsCard";
 import { useListNewsQuery } from "../../hooks/useList";
 import { useNavigate } from "react-router-dom";
-import CategoryBar  from "./components/CategoryBar/CategoryBar";
+import CategoryBar from "./components/CategoryBar/CategoryBar";
 
 const itemsPerPage = 6;
 
@@ -69,6 +69,11 @@ const Listpage = () => {
   };
 
   const handleCardClick = (id, article) => {
+    if (!article) {
+      console.error("Article is undefined");
+      return;
+    }
+  
     navigate(`/news/${id}`, { state: { article } });
   };
 
@@ -98,11 +103,12 @@ const Listpage = () => {
             sx={{ display: "flex", justifyContent: "center" }}
           >
             <NewsCard
-              image={article.image_url}
-              category={article.category}
-              title={article.title}
-              description={article.description}
-              onClick={() => handleCardClick(article.article_id, article)}
+              image={article?.image_url || "default-image.jpg"}
+              category={article?.category || []}
+              title={article?.title || "제목 없음"}
+              description={article?.description || "설명 없음"}
+              onClick={() => handleCardClick(article?.article_id, article)}
+              article={article}
             />
           </Grid>
         ))}
