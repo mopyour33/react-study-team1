@@ -25,6 +25,9 @@ const NewsCard = ({ image, category, title, description, onClick, article }) => 
     }
   };
 
+  if (image === null) {
+    image = "https://dummyimage.com/300x200/cccccc/ffffff&text=No+Image";
+  }
   return (
     <Card sx={{ width: 345, borderRadius: 3, position: "relative", cursor: "pointer" }} onClick={onClick}>
       <CardMedia component="img" height="180" image={image} alt={title} />
