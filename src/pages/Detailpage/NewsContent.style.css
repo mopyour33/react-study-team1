@@ -4,9 +4,27 @@
 
 .news-content-body {
     font-size: 19px;
-    line-height: 1.6;
+    line-height: 1.7;
     color: #333;
-    font-family: 'Georgia', serif;
+    font-family: 'Noto Sans KR', sans-serif;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+}
+
+/* 뉴스 설명 영역 숨김 */
+div.news-description,
+div[class*="news-description"],
+div.news-description-container,
+div.news-description-wrapper,
+.news-description {
+    display: none !important;
+}
+
+/* 특정 색상 배경의 설명 영역 숨김 - 이미지에 보이는 파란색 배경 영역 */
+div[style*="background-color: rgb(222, 235, 255)"],
+div[style*="background-color:#DEEBFF"],
+div[style*="background-color: #DEEBFF"] {
+    display: none !important;
 }
 
 .news-content-body p {
@@ -59,6 +77,26 @@
     padding: 30px 0;
 }
 
+.premium-content-message {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 24px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.premium-content-message p {
+    margin-bottom: 12px;
+    color: #555;
+}
+
+.premium-content-message p:last-child {
+    margin-bottom: 0;
+    font-size: 16px;
+    color: #777;
+}
+
 .news-original-link {
     margin: 36px 0;
     text-align: center;
@@ -66,7 +104,7 @@
 
 .original-link-button {
     display: inline-block;
-    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
     background-color: #f7f7f7;
     color: #333;
     padding: 12px 24px;

@@ -32,7 +32,6 @@ const fetchListNews = async (category) => {
 
 
 export const useListNewsQuery = (category) => {
-  console.log("category", category);
   return useQuery({
     queryKey: ["news-list", category],
     queryFn: () => fetchListNews(category),

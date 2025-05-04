@@ -43,7 +43,7 @@ const MyInterestCategoryNewsList = ({ myCategories, categoryNewsList }) => {
                 return (
                     <div className='category-block' key={index} >
                         <h3>{translateCategoryName(category, 'english', 'korean')}</h3>
-                        <Carousel responsive={responsive}>
+                        <Carousel responsive={responsive} containerClass="custom-carousel">
                             {targetcategoryNewsList?.data.map((newsItem, index) => (
                                 <>
                                     <MyNewsCard newsList={newsItem} key={index} />

@@ -2,112 +2,176 @@
 
 body {
     font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    color: #111;
+    line-height: 1.7;
+    background-color: #f8f8f8;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #333;
-    line-height: 1.6;
+    word-break: keep-all;
+    overflow-wrap: break-word;
 }
-
 
 .detail-container {
-    max-width: 820px;
-    margin: 0 auto;
-    padding: 32px 20px 64px;
-    font-family: 'Noto Sans KR', sans-serif;
-    color: #333;
-    position: relative;
+    max-width: 760px;
+    margin: 40px auto 80px;
+    padding: 5px 5px 5px;
     background-color: #fff;
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
-    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+    border-radius: 0;
+    border-top: 1px solid #e0e0e0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
+/* 기사 열 스타일 */
+.article-column {
+    display: flex;
+    justify-content: center;
+}
+
+.news-header {
+    order: 1;
+}
+
+.news-images {
+    order: 2;
+}
+
+.news-content {
+    order: 3;
+}
+
+.keyword-section {
+    order: 4;
+}
 
 .news-title {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 28px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 34px;
     line-height: 1.4;
     font-weight: 700;
-    margin-bottom: 16px;
-    color: #222;
+    margin-bottom: 12px;
+    color: #111;
     letter-spacing: -0.5px;
 }
 
-
 .news-description {
-    font-size: 18px;
-    line-height: 1.6;
-    color: #444;
-    margin-bottom: 24px;
     font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 400;
-    padding-left: 16px;
-    border-left: 3px solid #eaeaea;
+    font-size: 19px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 28px;
+    font-style: italic;
+    border-left: none;
+    padding-left: 0;
 }
 
-
 .news-content-body {
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 17px;
     line-height: 1.8;
-    color: #333;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 400;
+    color: #111;
     letter-spacing: -0.2px;
     word-break: keep-all;
     overflow-wrap: break-word;
 }
 
 .news-content-body p {
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 }
-
 
 .news-category {
     font-family: 'Noto Sans KR', sans-serif;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
-    letter-spacing: 0;
-    color: #3366cc;
+    letter-spacing: 0px;
+    color: #555;
+    text-transform: uppercase;
+    margin-bottom: 6px;
 }
-
 
 .news-meta {
     font-family: 'Noto Sans KR', sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     color: #666;
+    margin-bottom: 24px;
+    letter-spacing: -0.1px;
 }
-
 
 .keyword-heading {
     font-family: 'Noto Sans KR', sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
+    color: #333;
+    margin-top: 40px;
+    margin-bottom: 12px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    text-transform: uppercase;
+    letter-spacing: 0px;
 }
 
 .keyword-tag {
     font-family: 'Noto Sans KR', sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 400;
+    color: #555;
+    background-color: #f2f2f2;
+    padding: 4px 9px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    text-decoration: none;
+    letter-spacing: -0.2px;
 }
 
+.keyword-tag:hover {
+    background-color: #e0e0e0;
+    color: #111;
+}
 
 .news-image-caption {
     font-family: 'Noto Sans KR', sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     color: #555;
     line-height: 1.5;
+    margin-top: 8px;
+    letter-spacing: -0.1px;
 }
 
 @media (max-width: 768px) {
+    .detail-container {
+        max-width: 100%;
+        margin: 20px auto 40px;
+        padding: 25px 20px 30px;
+        border-top: none;
+    }
+
     .news-title {
-        font-size: 24px;
+        font-size: 26px;
+        line-height: 1.4;
     }
 
     .news-description {
-        font-size: 16px;
+        font-size: 17px;
     }
 
     .news-content-body {
         font-size: 16px;
-        line-height: 1.7;
+        line-height: 1.75;
+    }
+
+    .keyword-heading {
+        margin-top: 30px;
+        padding-top: 12px;
+    }
+
+    /* 모바일에서 컨테이너 정렬 */
+    .article-column {
+        justify-content: center;
+        padding: 0 15px;
     }
 }

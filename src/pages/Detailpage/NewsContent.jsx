@@ -2,11 +2,19 @@ import React from 'react';
 import './NewsContent.style.css';
 
 const NewsContent = ({ content, description, link }) => {
+    const extractUntilLastPeriod = (text) => {
+        if (!text) return '';
+        const lastPeriodIndex = text.lastIndexOf('.');
+        return lastPeriodIndex !== -1 ? text.substring(0, lastPeriodIndex + 1) : text;
+    };
+
     const renderContent = () => {
-        if (content) {
+        const processedDescription = extractUntilLastPeriod(description);
+
+        if (processedDescription) {
+            return <p>{processedDescription}</p>;
+        } else if (content && content !== "ONLY AVAILABLE IN PAID PLANS") {
             return <div dangerouslySetInnerHTML={{ __html: content }} />;
-        } else if (description) {
-            return <p>{description}</p>;
         } else {
             return <p className="no-content-message">이 기사의 본문 내용이 제공되지 않았습니다.</p>;
         }

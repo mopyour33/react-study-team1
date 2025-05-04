@@ -29,7 +29,7 @@ const MyFavoriteNewsList = ({ userId, myNewsList }) => {
 
     return (
         <div className='favorite-carousel-wrapper'>
-        <Carousel responsive={responsive}>
+        <Carousel responsive={responsive} containerClass="custom-carousel" >
             {myNewsList.map((newsItem, index) => {
                 return (
                     <MyFavoriteNewsCard key={index} userId={userId} newsItem={newsItem} myNewsList={myNewsList} />

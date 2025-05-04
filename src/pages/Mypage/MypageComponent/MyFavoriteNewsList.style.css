@@ -1,10 +1,32 @@
 .favorite-carousel-wrapper {
-    margin-bottom: 48px;
+  margin-bottom: 48px;
+}
+
+.custom-carousel {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+  .favorite-carousel-wrapper {
+    max-width: 280px;
+    padding: 0 8px;
+    margin: 0 auto;
   }
-  
-  
-  @media screen and (max-width: 768px) {
-    .favorite-carousel-wrapper {
-      padding: 0 8px;
-    }
+
+  .custom-carousel {
+    max-width: 260px;
+    margin: 0 auto;
+  }
+
+  .react-multi-carousel-list {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .react-multi-carousel-track {
+    display: flex !important;
+    align-items: center !important;
+  }
 }

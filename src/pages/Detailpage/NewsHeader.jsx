@@ -34,13 +34,6 @@ const NewsHeader = ({ newsItem, onShareClick }) => {
             <h1 className="news-title">{newsItem.title}</h1>
 
 
-            {newsItem.description && (
-                <div className="news-description">
-                    {newsItem.description}
-                </div>
-            )}
-
-
             <div className="news-meta">
                 <div className="news-meta-left">
 

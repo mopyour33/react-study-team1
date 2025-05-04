@@ -6,11 +6,14 @@ import {
   FormControl,
   ToggleButtonGroup,
   ToggleButton,
+  Row,
+  Col,
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./SignupPage.style.css";
 import useUserInfo from "../../stores/useUserInfo";
+import newsCategories from "../../config/categories";
 
 const SignupPage = () => {
   const { addUserInfo } = useUserInfo();
@@ -30,6 +33,7 @@ const SignupPage = () => {
     agreeTerms: false,
   });
 
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
@@ -49,10 +53,17 @@ const SignupPage = () => {
     "LGU+ 알뜰폰": "6",
   };
 
-  const handleFormSubmit = (e) => {
-    console.log("폼 제출 시작!");
-    e.preventDefault();
+  // 카테고리 선택 핸들러 (최대 3개까지)
+  const handleCategoryClick = (value) => {
+    if (selectedCategories.includes(value)) {
+      setSelectedCategories(selectedCategories.filter((v) => v !== value));
+    } else if (selectedCategories.length < 3) {
+      setSelectedCategories([...selectedCategories, value]);
+    }
+  };
 
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
     const newUser = {
       id: formData.username,
       cusInfo: {
@@ -67,13 +78,27 @@ const SignupPage = () => {
         mobileCompany: carrierMap[formData.carrier] || "0",
         sex: formData.gender === "male" ? "1" : "2",
         nationality: formData.nationality === "local" ? "1" : "2",
-        categoryILike: [],
+        categoryILike: selectedCategories,
         myFavoriteNews: [],
       },
     };
-    console.log("회원가입 버튼 클릭됨!");
     addUserInfo(newUser);
     navigate("/");
+  };
+
+  const openAddressSearch = () => {
+    new window.daum.Postcode({
+      oncomplete: (data) => {
+        const address = data.address;
+        const zipCode = data.zonecode;
+
+        setFormData((prevState) => ({
+          ...prevState,
+          address: address,
+          zipcode: zipCode,
+        }));
+      },
+    }).open();
   };
 
   return (
@@ -236,7 +261,8 @@ const SignupPage = () => {
             name="address"
             value={formData.address}
             onChange={handleInputChange}
-            placeholder="주소 (카카오 API 연동)"
+            placeholder="주소 찾기"
+            onClick={openAddressSearch}
           />
         </InputGroup>
 
@@ -263,6 +289,22 @@ const SignupPage = () => {
             placeholder="우편번호"
           />
         </InputGroup>
+
+        {/* 관심 카테고리 선택 */}
+        <Row className="mb-3 category-section">
+          <h5>관심 있는 뉴스 카테고리 (최대 3개 선택)</h5>
+          {newsCategories.map((category) => (
+            <Col sm={4} key={category.value}>
+              <Form.Check
+                type="checkbox"
+                label={category.label}
+                value={category.value}
+                checked={selectedCategories.includes(category.value)}
+                onChange={() => handleCategoryClick(category.value)}
+              />
+            </Col>
+          ))}
+        </Row>
 
         <Form.Check
           type="checkbox"

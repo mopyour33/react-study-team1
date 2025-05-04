@@ -12,27 +12,25 @@ import Mypage from "./pages/Mypage/Mypage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import NotFoundpage from "./pages/NotFoundpage/NotFoundpage";
 import PrivateRoute from "./routes/PrivateRoute";
+import useSignupStore from "./stores/useSignupStore";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 function App() {
-  const [authenticate, setAuthenticate] = useState(false);
+  const { isLoggedIn } = useSignupStore();
 
-  useEffect(() => {
-    console.log("로그인 상태: ", authenticate);
-  }, [authenticate]);
   return (
     <Routes>
       <Route path="/" element={<Applayout />}>
         <Route index element={<Mainpage />} />
-        <Route path="login" element={<Login setAuthenticate={setAuthenticate} />} />
+        <Route path="login" element={<Login />} />
         <Route path="signup" element={<SignupPage />} />
         
         <Route
           path="news"
           element={
-            <PrivateRoute isAuthenticated={authenticate}>
+            <PrivateRoute isAuthenticated={isLoggedIn}>
               <News />
             </PrivateRoute>
           }
@@ -40,7 +38,7 @@ function App() {
         <Route
           path="news/:id"
           element={
-            <PrivateRoute isAuthenticated={authenticate}>
+            <PrivateRoute isAuthenticated={isLoggedIn}>
               <Detail />
             </PrivateRoute>
           }
@@ -48,7 +46,7 @@ function App() {
         <Route
           path="mypage"
           element={
-            <PrivateRoute isAuthenticated={authenticate}>
+            <PrivateRoute isAuthenticated={isLoggedIn}>
               <Mypage />
             </PrivateRoute>
           }
