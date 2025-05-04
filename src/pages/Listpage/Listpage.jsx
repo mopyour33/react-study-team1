@@ -3,118 +3,80 @@ import "./Listpage.style.css";
 import { Container, Grid } from "@mui/material";
 import ReactPaginate from "react-paginate";
 import NewsCard from "./components/NewsCard/NewsCard";
-
-const articles = [
-  {
-    image: "https://picsum.photos/345/180",
-    category: "오픈AI",
-    title: "오픈AI, 딥 리서치 '라이트 버전' 출시…챗GPT 무료 사용자로 확대",
-    description:
-      "오픈AI가 심층적인 정보 수집과 분석을 제공하는 도구인 챗GPT '딥 리서치'의 경량 버전을 도입했다.",
-  },
-  {
-    image: "https://picsum.photos/seed/ai/345/180",
-    category: "Enterprise & People",
-    title:
-      "김지현 한국딥러닝 대표 “비전 OCR은 돈 버는 AI…정확도·사업성 모두 잡아”",
-    description:
-      "OCR은 빠른 성과를 낼 수 있는 AI 기술이며, 한국딥러닝은 이를 통해 공급기업 테스트를 진행했다.",
-  },
-  {
-    image: "https://picsum.photos/seed/data/345/180",
-    category: "Enterprise & People",
-    title:
-      "박병훈 티쓰리큐 대표 “기업 AI 도입은 '모델'로만 해결 안 돼…플랫폼으로 사…”",
-    description:
-      "단순 모델이 아닌 플랫폼 접근으로 기업의 AI 활용성을 해결해야 한다고 강조한다.",
-  },
-  {
-    image: "https://picsum.photos/345/180",
-    category: "오픈AI",
-    title: "오픈AI, 딥 리서치 '라이트 버전' 출시…챗GPT 무료 사용자로 확대",
-    description:
-      "오픈AI가 심층적인 정보 수집과 분석을 제공하는 도구인 챗GPT '딥 리서치'의 경량 버전을 도입했다.",
-  },
-  {
-    image: "https://picsum.photos/seed/ai/345/180",
-    category: "Enterprise & People",
-    title:
-      "김지현 한국딥러닝 대표 “비전 OCR은 돈 버는 AI…정확도·사업성 모두 잡아”",
-    description:
-      "OCR은 빠른 성과를 낼 수 있는 AI 기술이며, 한국딥러닝은 이를 통해 공급기업 테스트를 진행했다.",
-  },
-  {
-    image: "https://picsum.photos/seed/data/345/180",
-    category: "Enterprise & People",
-    title:
-      "박병훈 티쓰리큐 대표 “기업 AI 도입은 '모델'로만 해결 안 돼…플랫폼으로 사…”",
-    description:
-      "단순 모델이 아닌 플랫폼 접근으로 기업의 AI 활용성을 해결해야 한다고 강조한다.",
-  },
-  {
-    image: "https://picsum.photos/345/180",
-    category: "오픈AI",
-    title: "오픈AI, 딥 리서치 '라이트 버전' 출시…챗GPT 무료 사용자로 확대",
-    description:
-      "오픈AI가 심층적인 정보 수집과 분석을 제공하는 도구인 챗GPT '딥 리서치'의 경량 버전을 도입했다.",
-  },
-  {
-    image: "https://picsum.photos/seed/ai/345/180",
-    category: "Enterprise & People",
-    title:
-      "김지현 한국딥러닝 대표 “비전 OCR은 돈 버는 AI…정확도·사업성 모두 잡아”",
-    description:
-      "OCR은 빠른 성과를 낼 수 있는 AI 기술이며, 한국딥러닝은 이를 통해 공급기업 테스트를 진행했다.",
-  },
-  {
-    image: "https://picsum.photos/seed/data/345/180",
-    category: "Enterprise & People",
-    title:
-      "박병훈 티쓰리큐 대표 “기업 AI 도입은 '모델'로만 해결 안 돼…플랫폼으로 사…”",
-    description:
-      "단순 모델이 아닌 플랫폼 접근으로 기업의 AI 활용성을 해결해야 한다고 강조한다.",
-  },
-  {
-    image: "https://picsum.photos/seed/ai/345/180",
-    category: "Enterprise & People",
-    title:
-      "김지현 한국딥러닝 대표 “비전 OCR은 돈 버는 AI…정확도·사업성 모두 잡아”",
-    description:
-      "OCR은 빠른 성과를 낼 수 있는 AI 기술이며, 한국딥러닝은 이를 통해 공급기업 테스트를 진행했다.",
-  },
-  {
-    image: "https://picsum.photos/seed/data/345/180",
-    category: "Enterprise & People",
-    title:
-      "박병훈 티쓰리큐 대표 “기업 AI 도입은 '모델'로만 해결 안 돼…플랫폼으로 사…”",
-    description:
-      "단순 모델이 아닌 플랫폼 접근으로 기업의 AI 활용성을 해결해야 한다고 강조한다.",
-  },
-];
+import { useListNewsQuery } from "../../hooks/useList";
+import { useNavigate } from "react-router-dom";
 
 const itemsPerPage = 6;
 
 const Listpage = () => {
-  const [currentPage, setCurrentPage] = useState(0); // ReactPaginate는 0부터 시작
+  const [currentPage, setCurrentPage] = useState(0);
+  const {
+    data = [],
+    isLoading,
+    isError,
+    error,
+  } = useListNewsQuery("top", {
+    retry: 3,
+    retryDelay: 2000,
+  });
+  const navigate = useNavigate();
 
+  // 로딩 중
+  if (isLoading) {
+    return (
+      <Container>
+        <div className="detail-loading">
+          <div className="loading-spinner"></div>
+          <h2>기사를 불러오는 중</h2>
+        </div>
+      </Container>
+    );
+  }
+
+  if (isError) {
+    const errorMessage =
+      error?.response?.data?.message || "알 수 없는 오류 발생";
+    return (
+      <Container>
+        <div className="detail-loading">
+          <h2>에러 발생: {errorMessage}</h2>
+        </div>
+      </Container>
+    );
+  }
+
+  // 데이터가 없을 경우
+  if (!data || data.length === 0) {
+    return (
+      <Container>
+        <div className="detail-loading">
+          <h2>뉴스 기사가 없습니다.</h2>
+        </div>
+      </Container>
+    );
+  }
+
+  // 페이지네이션 계산
   const offset = currentPage * itemsPerPage;
-  const paginatedArticles = articles.slice(offset, offset + itemsPerPage);
-  const pageCount = Math.ceil(articles.length / itemsPerPage);
+  const paginatedArticles = data.slice(offset, offset + itemsPerPage);
+  const pageCount = Math.ceil(data.length / itemsPerPage);
 
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected);
   };
 
+  const handleCardClick = (id, article) => {
+    navigate(`/news/${id}`, { state: { article } });
+  };
+
+  console.log("data", data);
   return (
     <Container sx={{ py: 4 }}>
       <Grid
         container
         spacing={3}
-        justifyContent="center"  // 전체적으로 가운데 정렬
-        sx={{
-          flexWrap: "wrap",
-          gap: "24px",  // 카드 간 간격
-        }}
+        justifyContent="center"
+        sx={{ flexWrap: "wrap", gap: "24px" }}
       >
         {paginatedArticles.map((article, index) => (
           <Grid
@@ -123,15 +85,19 @@ const Listpage = () => {
             sm={6}
             md={4}
             key={index}
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-            }}
+            sx={{ display: "flex", justifyContent: "center" }}
           >
-            <NewsCard {...article} />
+            <NewsCard
+              image={article.image_url}
+              category={article.category}
+              title={article.title}
+              description={article.description}
+              onClick={() => handleCardClick(article.article_id, article)}
+            />
           </Grid>
         ))}
       </Grid>
+
       <ReactPaginate
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}
