@@ -9,7 +9,7 @@ import { useTopNewsQuery } from "../../../../hooks/useTopNews";
 
 const TopNews = () => {
     const navigate = useNavigate();
-    const {data : topData, isLoading, isError, error} = useTopNewsQuery();
+    const { data: topData, isLoading, isError, error } = useTopNewsQuery();
     console.log("탑 : ", topData)
 
   // hook 호출되지 않는 문제 확인 위해 최신기사는 임시로 셋팅 - 수정 예정
