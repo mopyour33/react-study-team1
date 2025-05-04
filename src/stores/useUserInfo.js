@@ -55,6 +55,40 @@ const useUserInfo = create((set, get) => ({
     return get().userInfoList.find((user) => user.id === id);
   },
 
+  addFavoriteNews: (userId, article) => {
+    set((state) => ({
+      userInfoList: state.userInfoList.map((user) =>
+        user.id === userId
+          ? {
+              ...user,
+              cusInfo: {
+                ...user.cusInfo,
+                myFavoriteNews: [...user.cusInfo.myFavoriteNews, article],
+              },
+            }
+          : user
+      ),
+    }));
+  },
+  
+  removeFavoriteNews: (userId, articleId) => {
+    set((state) => ({
+      userInfoList: state.userInfoList.map((user) =>
+        user.id === userId
+          ? {
+              ...user,
+              cusInfo: {
+                ...user.cusInfo,
+                myFavoriteNews: user.cusInfo.myFavoriteNews.filter(
+                  (a) => a.article_id !== articleId
+                ),
+              },
+            }
+          : user
+      ),
+    }));
+  },
+
   // 새 유저 추가 함수 (회원가입 시 사용)
   addUserInfo: (newUser) => {
     set((state) => ({
